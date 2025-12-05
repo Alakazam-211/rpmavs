@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -188,33 +188,40 @@ export default function CareersPage() {
       <Navigation />
       
       <main className="flex-1">
-        {/* Hero Section with Image Slideshow */}
-        <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-[#2075bf] via-[#2d8dd4] to-[#1a5d99]">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-              backgroundSize: '50px 50px',
-            }} />
+        {/* Hero Section with Full-Screen Image Slideshow */}
+        <section className="relative h-[80vh] flex items-center overflow-hidden">
+          {/* Full-Screen Slideshow Background */}
+          <div className="absolute inset-0">
+            <img
+              key={currentSlide}
+              src={teamMemberImages[currentSlide]}
+              alt={`RPM Team Member Image – ${currentSlide + 1}`}
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Dark Overlay for Text Readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
           </div>
-          
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Left Column - Text Content */}
+
+          {/* Content Overlay */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div className="max-w-4xl">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="text-white"
               >
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-lg uppercase tracking-wider">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider">
                   Forget the "job",<br />
                   Join the Family!
                 </h1>
                 <div className="space-y-4 mb-8">
-                  <p className="text-xl sm:text-2xl text-white/95 leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
                     Our founder, Rodney Milner started the company over 30 years ago recognizing a need integrators had in outsourcing labor resources. Rodney, now retired, has passed the torch on to his son and daughter Matt Milner and Lindsey Hawk. The "family", once literal, has become the culture for the entire company.
                   </p>
-                  <p className="text-xl sm:text-2xl text-white/95 leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
                     When you join the RPM Family, you've become a part of a much bigger picture, where your voice is heard, and a rewarding career path awaits. RPM doesn't make short-term hires, we expect all new hires to have a long term home here.
                   </p>
                 </div>
@@ -222,74 +229,49 @@ export default function CareersPage() {
                   <GlassButton 
                     onClick={scrollToForm}
                     variant="primary"
-                    className="!bg-white/25 !backdrop-blur-md !border-2 !border-white/40 !text-white hover:!bg-white/35 !text-lg !px-8 !py-4"
+                    className="!bg-white/25 !backdrop-blur-md !border-2 !border-white/40 !text-white hover:!bg-white/35 !text-lg !px-8 !py-4 shadow-xl"
                   >
                     Submit An Application Now!
                   </GlassButton>
                 </div>
               </motion.div>
-
-              {/* Right Column - Image Slideshow */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative"
-              >
-                <GlassCard className="p-4 overflow-hidden">
-                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={currentSlide}
-                        src={teamMemberImages[currentSlide]}
-                        alt={`RPM Team Member Image – ${currentSlide + 1}`}
-                        initial={{ opacity: 0, scale: 1.1 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-full h-full object-cover"
-                      />
-                    </AnimatePresence>
-
-                    {/* Navigation Arrows */}
-                    <button
-                      onClick={prevSlide}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all z-10"
-                      aria-label="Previous slide"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={nextSlide}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all z-10"
-                      aria-label="Next slide"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-
-                    {/* Slide Indicators */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                      {teamMemberImages.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => goToSlide(index)}
-                          className={`h-2 rounded-full transition-all ${
-                            index === currentSlide
-                              ? 'w-8 bg-white'
-                              : 'w-2 bg-white/50 hover:bg-white/75'
-                          }`}
-                          aria-label={`Go to slide ${index + 1}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </GlassCard>
-              </motion.div>
             </div>
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all z-20 shadow-lg"
+            aria-label="Previous slide"
+          >
+            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all z-20 shadow-lg"
+            aria-label="Next slide"
+          >
+            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            {teamMemberImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-2 sm:h-2.5 rounded-full transition-all ${
+                  index === currentSlide
+                    ? 'w-8 sm:w-10 bg-white shadow-lg'
+                    : 'w-2 sm:w-2.5 bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
         </section>
 
@@ -516,23 +498,25 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mt-12"
+                className="text-center mt-12 mb-0"
               >
-                <GlassCard className="glass-card-gradient p-8 md:p-12">
+                <GlassCard className="glass-card-gradient p-8 md:p-12 mb-0">
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                     Ready to Join Us?
                   </h3>
-                  <p className="text-xl text-white/95 mb-6 max-w-2xl mx-auto">
+                  <p className="text-xl text-white/95 max-w-2xl mx-auto mb-6">
                     If these videos resonate with you, we'd love to hear from you!
                   </p>
                   <div className="flex justify-center">
-                    <GlassButton 
-                      onClick={scrollToForm}
-                      variant="primary"
-                      className="!bg-white/25 !backdrop-blur-md !border-2 !border-white/40 !text-white hover:!bg-white/35 !text-lg !px-8 !py-4"
+                    <motion.div
+                      animate={{ y: [0, 8, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      className="text-white"
                     >
-                      Start Your Application
-                    </GlassButton>
+                      <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </motion.div>
                   </div>
                 </GlassCard>
               </motion.div>
@@ -541,7 +525,7 @@ export default function CareersPage() {
         </section>
 
         {/* Application Form Section */}
-        <section id="application-form" className="py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+        <section id="application-form" className="pt-16 md:pt-24 pb-20 md:pb-32 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <motion.div
