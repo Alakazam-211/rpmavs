@@ -80,11 +80,11 @@ export default function Navigation() {
                 className="lg:hidden h-10 sm:h-12 w-auto"
               >
                 <Image
-                  src="/rpmavs_icon_whitebg.jpg"
+                  src="/rpmavs_icon.png"
                   alt="RPM Audio Visual Services Atlanta, GA"
                   width={120}
                   height={120}
-                  className="h-full w-auto object-contain"
+                  className="h-full w-auto object-contain brightness-0 invert"
                   priority
                 />
               </motion.div>
