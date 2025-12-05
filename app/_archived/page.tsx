@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import GlassCard from './components/ui/GlassCard';
-import GlassButton from './components/ui/GlassButton';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
+import GlassCard from '../components/ui/GlassCard';
+import GlassButton from '../components/ui/GlassButton';
 
 export default function Home() {
   const stats = [
