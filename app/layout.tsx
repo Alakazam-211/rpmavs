@@ -11,6 +11,11 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   title: "RPM Audio Visual Services Atlanta, GA – Expert Subcontractors for A/V Sellers and Consultants",
   description: "RPM represents the largest team of commercial audio visual expertise in the country for any single location. All the while, using zero outsourcing.",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({

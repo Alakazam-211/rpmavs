@@ -189,7 +189,7 @@ export default function CareersPage() {
       
       <main className="flex-1">
         {/* Hero Section with Full-Screen Image Slideshow */}
-        <section className="relative h-[80vh] flex items-center overflow-hidden">
+        <section className="relative h-[70vh] sm:h-[80vh] min-h-[500px] sm:min-h-[600px] flex items-center overflow-hidden">
           {/* Full-Screen Slideshow Background */}
           <div className="absolute inset-0">
             <img
@@ -205,7 +205,7 @@ export default function CareersPage() {
           </div>
 
           {/* Content Overlay */}
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-20 pb-20">
             <div className="max-w-4xl">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -213,23 +213,23 @@ export default function CareersPage() {
                 transition={{ duration: 0.8 }}
                 className="text-white"
               >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-4 sm:mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider px-2" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.1em' }}>
                   Forget the "job",<br />
                   Join the Family!
                 </h1>
-                <div className="space-y-4 mb-8">
-                  <p className="text-lg sm:text-xl md:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
                     Our founder, Rodney Milner started the company over 30 years ago recognizing a need integrators had in outsourcing labor resources. Rodney, now retired, has passed the torch on to his son and daughter Matt Milner and Lindsey Hawk. The "family", once literal, has become the culture for the entire company.
                   </p>
-                  <p className="text-lg sm:text-xl md:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
                     When you join the RPM Family, you've become a part of a much bigger picture, where your voice is heard, and a rewarding career path awaits. RPM doesn't make short-term hires, we expect all new hires to have a long term home here.
                   </p>
                 </div>
-                <div className="flex justify-start">
+                <div className="flex justify-start px-2">
                   <GlassButton 
                     onClick={scrollToForm}
                     variant="primary"
-                    className="!bg-white/25 !backdrop-blur-md !border-2 !border-white/40 !text-white hover:!bg-white/35 !text-lg !px-8 !py-4 shadow-xl"
+                    className="!bg-white/25 !backdrop-blur-md !border-2 !border-white/40 !text-white hover:!bg-white/35 !text-base sm:!text-lg !px-6 sm:!px-8 !py-3 sm:!py-4 shadow-xl"
                   >
                     Submit An Application Now!
                   </GlassButton>
@@ -241,33 +241,33 @@ export default function CareersPage() {
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all z-20 shadow-lg"
+            className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-lg touch-manipulation min-h-[44px] min-w-[44px]"
             aria-label="Previous slide"
           >
-            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all z-20 shadow-lg"
+            className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-lg touch-manipulation min-h-[44px] min-w-[44px]"
             aria-label="Next slide"
           >
-            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
           {/* Slide Indicators */}
-          <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
             {teamMemberImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`h-2 sm:h-2.5 rounded-full transition-all ${
+                className={`h-2 sm:h-2.5 rounded-full transition-all touch-manipulation min-w-[8px] ${
                   index === currentSlide
-                    ? 'w-8 sm:w-10 bg-white shadow-lg'
-                    : 'w-2 sm:w-2.5 bg-white/50 hover:bg-white/75'
+                    ? 'w-6 sm:w-8 md:w-10 bg-white shadow-lg'
+                    : 'w-2 sm:w-2.5 bg-white/50 hover:bg-white/75 active:bg-white/75'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -277,7 +277,7 @@ export default function CareersPage() {
 
 
         {/* Pros vs Cons Side-by-Side Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <motion.div
@@ -285,18 +285,18 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-8 sm:mb-12"
               >
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#2075bf] mb-4 uppercase tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2075bf] mb-3 sm:mb-4 uppercase tracking-tight leading-tight px-2">
                   Are You Fit for the Family?
                 </h2>
-                <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-2">
                   See what makes someone thrive at RPM – and what doesn't
                 </p>
               </motion.div>
 
               {/* Side-by-Side Comparison */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12">
                 {/* Fit for Family Column */}
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
@@ -314,7 +314,7 @@ export default function CareersPage() {
                     </h3>
                   </div>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {fitForFamily.map((item, index) => (
                       <motion.div
                         key={index}
@@ -323,14 +323,14 @@ export default function CareersPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                       >
-                        <GlassCard className="h-full p-6 border-l-4 border-[#2075bf] hover:shadow-xl transition-shadow">
-                          <div className="flex items-start gap-4">
-                            <div className="text-2xl text-[#2075bf] font-bold flex-shrink-0 mt-1">{item.icon}</div>
-                            <div className="flex-1">
-                              <h4 className="text-xl font-bold text-[#2075bf] mb-2">
+                        <GlassCard className="h-full p-4 sm:p-6 border-l-4 border-[#2075bf] hover:shadow-xl transition-shadow">
+                          <div className="flex items-start gap-3 sm:gap-4">
+                            <div className="text-xl sm:text-2xl text-[#2075bf] font-bold flex-shrink-0 mt-1">{item.icon}</div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-lg sm:text-xl font-bold text-[#2075bf] mb-2 leading-tight">
                                 {item.title}
                               </h4>
-                              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                                 {item.description}
                               </p>
                             </div>
@@ -358,7 +358,7 @@ export default function CareersPage() {
                     </h3>
                   </div>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {notGoodFit.map((item, index) => (
                       <motion.div
                         key={index}
@@ -367,14 +367,14 @@ export default function CareersPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                       >
-                        <GlassCard className="h-full p-6 border-l-4 border-red-400 bg-red-50/20 hover:shadow-xl transition-shadow">
-                          <div className="flex items-start gap-4">
-                            <div className="text-2xl text-red-600 font-bold flex-shrink-0 mt-1">{item.icon}</div>
-                            <div className="flex-1">
-                              <h4 className="text-xl font-bold text-gray-800 mb-2">
+                        <GlassCard className="h-full p-4 sm:p-6 border-l-4 border-red-400 bg-red-50/20 hover:shadow-xl transition-shadow">
+                          <div className="flex items-start gap-3 sm:gap-4">
+                            <div className="text-xl sm:text-2xl text-red-600 font-bold flex-shrink-0 mt-1">{item.icon}</div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 leading-tight">
                                 {item.title}
                               </h4>
-                              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                                 {item.description}
                               </p>
                             </div>
@@ -394,18 +394,18 @@ export default function CareersPage() {
                 transition={{ duration: 0.6 }}
                 className="text-center"
               >
-                <GlassCard className="glass-card-gradient p-8 md:p-12">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                <GlassCard className="glass-card-gradient p-6 sm:p-8 md:p-12">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">
                     Think You're a Fit?
                   </h3>
-                  <p className="text-xl text-white/95 mb-6 max-w-2xl mx-auto">
+                  <p className="text-base sm:text-lg md:text-xl text-white/95 mb-4 sm:mb-6 max-w-2xl mx-auto">
                     If you see yourself in the left column, we'd love to hear from you!
                   </p>
                   <div className="flex justify-center">
                     <GlassButton 
                       onClick={scrollToForm}
                       variant="primary"
-                      className="!bg-white/25 !backdrop-blur-md !border-2 !border-white/40 !text-white hover:!bg-white/35 !text-lg !px-8 !py-4"
+                      className="!bg-white/25 !backdrop-blur-md !border-2 !border-white/40 !text-white hover:!bg-white/35 !text-base sm:!text-lg !px-6 sm:!px-8 !py-3 sm:!py-4"
                     >
                       Start Your Application
                     </GlassButton>
@@ -418,7 +418,7 @@ export default function CareersPage() {
 
 
         {/* Video Section - See the Vision */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <motion.div
@@ -426,17 +426,17 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-8 sm:mb-12"
               >
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2075bf] mb-4 uppercase">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2075bf] mb-3 sm:mb-4 uppercase leading-tight px-2">
                   See the Vision
                 </h2>
-                <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-2">
                   Watch these videos to learn more about RPM and see what makes our family special
                 </p>
               </motion.div>
 
-              <div className="space-y-8">
+              <div className="space-y-6 sm:space-y-8">
                 {[
                   {
                     title: 'Welcome to the Family!',
@@ -466,10 +466,10 @@ export default function CareersPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <GlassCard className="p-6 md:p-8 overflow-hidden">
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <GlassCard className="p-4 sm:p-6 md:p-8 overflow-hidden">
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                         <div className="lg:col-span-2">
-                          <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg">
+                          <div className="relative w-full aspect-video rounded-lg sm:rounded-xl overflow-hidden shadow-lg">
                             <iframe
                               className="absolute inset-0 w-full h-full"
                               src={`https://www.youtube.com/embed/${video.videoId}`}
@@ -480,10 +480,10 @@ export default function CareersPage() {
                           </div>
                         </div>
                         <div className="flex flex-col justify-center">
-                          <h3 className="text-2xl sm:text-3xl font-bold text-[#2075bf] mb-3">
+                          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2075bf] mb-2 sm:mb-3 leading-tight">
                             {video.title}
                           </h3>
-                          <p className="text-gray-700 leading-relaxed mb-4">
+                          <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4">
                             {video.description}
                           </p>
                         </div>
@@ -525,7 +525,7 @@ export default function CareersPage() {
         </section>
 
         {/* Application Form Section */}
-        <section id="application-form" className="pt-16 md:pt-24 pb-20 md:pb-32 bg-gradient-to-b from-gray-50 to-white">
+        <section id="application-form" className="pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-20 md:pb-32 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -534,33 +534,33 @@ export default function CareersPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="text-center mb-8">
-                  <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-[#2075bf] uppercase tracking-tight">
+                <div className="text-center mb-6 sm:mb-8">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-[#2075bf] uppercase tracking-tight leading-tight px-2">
                     Submit An Application
                   </h2>
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <span className="text-lg text-gray-600">Step {currentStep} of {totalSteps}</span>
-                    <div className="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4 px-2">
+                    <span className="text-base sm:text-lg text-gray-600">Step {currentStep} of {totalSteps}</span>
+                    <div className="w-full sm:w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div 
                         className="h-full bg-gradient-to-r from-[#2075bf] to-[#2d8dd4] transition-all duration-500"
                         style={{ width: `${(currentStep / totalSteps) * 100}%` }}
                       />
                     </div>
-                    <span className="text-lg text-gray-600">{Math.round((currentStep / totalSteps) * 100)}%</span>
+                    <span className="text-base sm:text-lg text-gray-600">{Math.round((currentStep / totalSteps) * 100)}%</span>
                   </div>
                 </div>
 
-                <GlassCard className="p-6 md:p-8 lg:p-12">
-                  <form onSubmit={handleSubmit} className="space-y-8">
+                <GlassCard className="p-4 sm:p-6 md:p-8 lg:p-12">
+                  <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                     {/* Step 1: Personal Information */}
                     {currentStep === 1 && (
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="space-y-6"
+                        className="space-y-4 sm:space-y-6"
                       >
-                        <h3 className="text-2xl sm:text-3xl font-bold text-[#2075bf] mb-6 uppercase">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2075bf] mb-4 sm:mb-6 uppercase leading-tight">
                           Your Personal Information
                         </h3>
 
@@ -579,7 +579,7 @@ export default function CareersPage() {
                           />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                           <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
                               Your Email Address <span className="text-red-500">*</span>
@@ -590,7 +590,7 @@ export default function CareersPage() {
                               value={formData.email}
                               onChange={handleInputChange}
                               required
-                              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
+                              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all text-base"
                               placeholder="Enter Email"
                             />
                           </div>

@@ -118,7 +118,7 @@ export default function ServicesPage() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[40vh] sm:h-[50vh] min-h-[350px] sm:min-h-[400px] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
@@ -129,14 +129,14 @@ export default function ServicesPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#2075bf]/20 to-transparent" />
           </div>
           
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-center text-white"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-4 sm:mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider px-2" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.1em' }}>
                 RPM-AVS Services
               </h1>
             </motion.div>
@@ -144,7 +144,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Intro Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-white">
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <motion.h2
@@ -152,7 +152,7 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-8"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight px-2"
               >
                 A unique approach to delivering outstanding results to our partners.
               </motion.h2>
@@ -161,7 +161,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Advantages Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <motion.div
@@ -169,16 +169,16 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12 md:mb-16"
+                className="text-center mb-8 sm:mb-12 md:mb-16"
               >
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2075bf] uppercase mb-4 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2075bf] uppercase mb-3 sm:mb-4 tracking-tight leading-tight px-2">
                   Why Choose RPM-AVS?
                 </h2>
-                <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-2">
                   Our commitment to excellence sets us apart in the AV industry
                 </p>
               </motion.div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 {advantages.map((advantage, index) => (
                   <motion.div
                     key={index}
@@ -187,16 +187,16 @@ export default function ServicesPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <GlassCard className="h-full p-6 md:p-8">
-                      <div className="flex items-start gap-4">
+                    <GlassCard className="h-full p-4 sm:p-6 md:p-8">
+                      <div className="flex items-start gap-3 sm:gap-4">
                         <div className="flex-shrink-0 text-[#2075bf]">
-                          <advantage.icon size={32} />
+                          <advantage.icon size={28} />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg sm:text-xl font-bold text-[#2075bf] uppercase mb-3">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#2075bf] uppercase mb-2 sm:mb-3 leading-tight">
                             {advantage.title}
                           </h3>
-                          <p className="text-gray-700 leading-relaxed">
+                          <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                             {advantage.description}
                           </p>
                         </div>
@@ -210,7 +210,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-white">
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <motion.div
@@ -218,16 +218,16 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12 md:mb-16"
+                className="text-center mb-8 sm:mb-12 md:mb-16"
               >
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2075bf] uppercase mb-4 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2075bf] uppercase mb-3 sm:mb-4 tracking-tight leading-tight px-2">
                   Services
                 </h2>
-                <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-2">
                   Comprehensive AV solutions from design to installation and beyond
                 </p>
               </motion.div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
@@ -236,16 +236,16 @@ export default function ServicesPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <GlassCard className="h-full p-6 md:p-8">
-                      <div className="flex items-start gap-4">
+                    <GlassCard className="h-full p-4 sm:p-6 md:p-8">
+                      <div className="flex items-start gap-3 sm:gap-4">
                         <div className="flex-shrink-0 text-[#2075bf]">
-                          <service.icon size={32} />
+                          <service.icon size={28} />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg sm:text-xl font-bold text-[#2075bf] uppercase mb-3">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#2075bf] uppercase mb-2 sm:mb-3 leading-tight">
                             {service.title}
                           </h3>
-                          <p className="text-gray-700 leading-relaxed">
+                          <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                             {service.description}
                           </p>
                         </div>
@@ -260,7 +260,7 @@ export default function ServicesPage() {
 
         {/* Process Section - 4-A Road to Success */}
         <section 
-          className="relative py-20 md:py-32 bg-cover bg-center bg-no-repeat"
+          className="relative py-12 sm:py-16 md:py-20 lg:py-32 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(https://rpmavs.bobkadrie.com/wp-content/uploads/2015/06/cover11.jpg?id=30)',
           }}
@@ -274,12 +274,12 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-16 uppercase"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-8 sm:mb-12 md:mb-16 uppercase leading-tight px-2"
               >
                 Our Process: The 4-A Road to Success
               </motion.h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
                 {processSteps.map((step, index) => (
                   <motion.div
                     key={index}
@@ -288,14 +288,14 @@ export default function ServicesPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <GlassCard className="h-full p-6 md:p-8 text-center bg-white/10 backdrop-blur-md border border-white/20">
-                      <div className="flex justify-center mb-4 text-white">
-                        <step.icon size={48} />
+                    <GlassCard className="h-full p-4 sm:p-6 md:p-8 text-center bg-white/10 backdrop-blur-md border border-white/20">
+                      <div className="flex justify-center mb-3 sm:mb-4 text-white">
+                        <step.icon size={40} />
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white uppercase mb-4">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white uppercase mb-3 sm:mb-4 leading-tight">
                         {step.title}
                       </h3>
-                      <p className="text-white/90 leading-relaxed">
+                      <p className="text-sm sm:text-base text-white/90 leading-relaxed">
                         {step.description}
                       </p>
                     </GlassCard>

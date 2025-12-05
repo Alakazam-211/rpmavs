@@ -19,14 +19,14 @@ function CaseStudySection({ study, index }: { study: CaseStudy; index: number })
 
   return (
     <section
-      className={`relative min-h-[80vh] flex items-center py-20 ${
+      className={`relative min-h-[60vh] sm:min-h-[80vh] flex items-center py-12 sm:py-16 md:py-20 ${
         isEven ? 'bg-gray-50' : 'bg-white'
       }`}
     >
       {/* Case Study Number Indicator */}
       <div
-        className={`absolute top-8 ${
-          study.imagePosition === 'right' ? 'left-8' : 'right-8'
+        className={`absolute top-4 sm:top-8 ${
+          study.imagePosition === 'right' ? 'left-4 sm:left-8' : 'right-4 sm:right-8'
         } z-20 hidden lg:block`}
       >
         <div className="relative">
@@ -44,7 +44,7 @@ function CaseStudySection({ study, index }: { study: CaseStudy; index: number })
           }`}>
             {/* Image Section - Full Width Background Style */}
             <div
-              className={`relative h-[60vh] min-h-[500px] lg:h-[70vh] order-1 group cursor-pointer overflow-hidden ${
+              className={`relative h-[40vh] sm:h-[50vh] min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:h-[70vh] order-1 group cursor-pointer overflow-hidden ${
                 study.imagePosition === 'right' ? 'lg:order-1' : 'lg:order-2'
               }`}
             >
@@ -71,30 +71,30 @@ function CaseStudySection({ study, index }: { study: CaseStudy; index: number })
 
             {/* Content Section */}
             <div
-              className={`relative z-10 p-8 md:p-12 lg:p-16 order-2 ${
+              className={`relative z-10 p-6 sm:p-8 md:p-12 lg:p-16 order-2 ${
                 study.imagePosition === 'right' ? 'lg:order-2' : 'lg:order-1'
               }`}
             >
               <div className="max-w-2xl mx-auto lg:mx-0">
                 <div>
                   {/* Case Study Number - Mobile */}
-                  <div className="lg:hidden mb-6">
-                    <div className="inline-flex items-center gap-3">
-                      <div className="bg-[#2075bf] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold">
+                  <div className="lg:hidden mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 sm:gap-3">
+                      <div className="bg-[#2075bf] text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold">
                         {String(index + 1).padStart(2, '0')}
                       </div>
                       <div className="h-px bg-gray-300 flex-1" />
                     </div>
                   </div>
 
-                  <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#2075bf] uppercase mb-4 leading-tight tracking-tight">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2075bf] uppercase mb-3 sm:mb-4 leading-tight tracking-tight">
                     {study.client}
                   </h2>
-                  <p className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 uppercase mb-8 tracking-wider">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-700 uppercase mb-6 sm:mb-8 tracking-wider">
                     {study.location}
                   </p>
-                  <div className="w-24 h-1 bg-[#2075bf] mb-8" />
-                  <p className="text-lg sm:text-xl md:text-2xl text-gray-800 leading-relaxed font-light">
+                  <div className="w-20 sm:w-24 h-1 bg-[#2075bf] mb-6 sm:mb-8" />
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800 leading-relaxed font-light">
                     {study.description}
                   </p>
                 </div>
@@ -141,7 +141,7 @@ export default function CaseStudiesPage() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[50vh] sm:h-[60vh] min-h-[400px] sm:min-h-[500px] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
@@ -152,12 +152,12 @@ export default function CaseStudiesPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#2075bf]/20 to-transparent" />
           </div>
           
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white pt-20 pb-20">
             <div>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light mb-4 sm:mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider px-2" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.1em' }}>
                 Case Studies
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl font-light max-w-4xl mx-auto drop-shadow-lg">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light max-w-4xl mx-auto drop-shadow-lg px-2">
                 Real Projects. Real Results. Real Expertise.
               </p>
             </div>
@@ -170,7 +170,7 @@ export default function CaseStudiesPage() {
         ))}
 
         {/* CTA Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-r from-[#2075bf] via-[#2d8dd4] to-[#1a5d99] relative overflow-hidden">
+        <section className="py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-r from-[#2075bf] via-[#2d8dd4] to-[#1a5d99] relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
               backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
@@ -179,13 +179,13 @@ export default function CaseStudiesPage() {
           </div>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-lg uppercase tracking-wider">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg uppercase tracking-wider leading-tight px-2">
                 Trust RPM-AVS With Your Next Project
               </h2>
-              <p className="text-xl sm:text-2xl md:text-3xl mb-12 text-white/95 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 sm:mb-12 text-white/95 max-w-3xl mx-auto leading-relaxed font-light px-2">
                 Turnkey Service. Certified Experts. Award-Winning Service.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-2">
                 <GlassButton 
                   href="/contact" 
                   variant="primary"

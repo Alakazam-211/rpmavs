@@ -141,7 +141,7 @@ export default function GetAQuotePage() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[40vh] sm:h-[50vh] min-h-[350px] sm:min-h-[400px] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
@@ -152,12 +152,12 @@ export default function GetAQuotePage() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#2075bf]/20 to-transparent" />
           </div>
           
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20">
             <div className="text-center text-white">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-4 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-3 sm:mb-4 leading-tight drop-shadow-2xl uppercase tracking-wider px-2" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.1em' }}>
                 Get A Quote
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl font-light max-w-4xl mx-auto drop-shadow-lg">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light max-w-4xl mx-auto drop-shadow-lg px-2">
                 Request a quote for your next project
               </p>
             </div>
@@ -165,7 +165,7 @@ export default function GetAQuotePage() {
         </section>
 
         {/* Form Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+        <section className="py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <motion.div
@@ -174,38 +174,38 @@ export default function GetAQuotePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="text-center mb-8">
-                  <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-[#2075bf] uppercase tracking-tight">
+                <div className="text-center mb-6 sm:mb-8">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-[#2075bf] uppercase tracking-tight leading-tight px-2">
                     Request A Quote
                   </h2>
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <span className="text-lg text-gray-600">Step {currentStep} of {totalSteps}</span>
-                    <div className="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4 px-2">
+                    <span className="text-base sm:text-lg text-gray-600">Step {currentStep} of {totalSteps}</span>
+                    <div className="w-full sm:w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div 
                         className="h-full bg-gradient-to-r from-[#2075bf] to-[#2d8dd4] transition-all duration-500"
                         style={{ width: `${(currentStep / totalSteps) * 100}%` }}
                       />
                     </div>
-                    <span className="text-lg text-gray-600">{Math.round((currentStep / totalSteps) * 100)}%</span>
+                    <span className="text-base sm:text-lg text-gray-600">{Math.round((currentStep / totalSteps) * 100)}%</span>
                   </div>
                 </div>
 
-                <GlassCard className="p-6 md:p-8 lg:p-12">
-                  <form onSubmit={handleSubmit} className="space-y-8">
+                <GlassCard className="p-4 sm:p-6 md:p-8 lg:p-12">
+                  <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                     {/* Step 1: Contact & Project Information */}
                     {currentStep === 1 && (
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="space-y-6"
+                        className="space-y-4 sm:space-y-6"
                       >
-                        <h3 className="text-2xl sm:text-3xl font-bold text-[#2075bf] mb-6 uppercase">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2075bf] mb-4 sm:mb-6 uppercase leading-tight">
                           Section 1: Your Information
                         </h3>
-                        <p className="text-gray-700 mb-6">Please enter your information below:</p>
+                        <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">Please enter your information below:</p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                           <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
                               First Name <span className="text-red-500">*</span>
@@ -216,7 +216,7 @@ export default function GetAQuotePage() {
                               value={formData.firstName}
                               onChange={handleInputChange}
                               required
-                              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
+                              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all text-base"
                               placeholder="First Name"
                             />
                           </div>
@@ -339,14 +339,14 @@ export default function GetAQuotePage() {
                               className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
                               placeholder="Street address 2"
                             />
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
                               <input
                                 type="text"
                                 name="jobsiteAddress.city"
                                 value={formData.jobsiteAddress.city}
                                 onChange={handleInputChange}
                                 required
-                                className="px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
+                                className="px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all text-base"
                                 placeholder="City"
                               />
                               <input
@@ -355,7 +355,7 @@ export default function GetAQuotePage() {
                                 value={formData.jobsiteAddress.zip}
                                 onChange={handleInputChange}
                                 required
-                                className="px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
+                                className="px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all text-base"
                                 placeholder="ZIP code"
                               />
                               <select
@@ -363,7 +363,7 @@ export default function GetAQuotePage() {
                                 value={formData.jobsiteAddress.state}
                                 onChange={handleInputChange}
                                 required
-                                className="px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
+                                className="px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all text-base"
                               >
                                 <option value="">State</option>
                                 {usStates.map(state => (
@@ -388,7 +388,7 @@ export default function GetAQuotePage() {
                           />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
                           <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
                               Quote Needed By
@@ -398,7 +398,7 @@ export default function GetAQuotePage() {
                               name="quoteNeededBy"
                               value={formData.quoteNeededBy}
                               onChange={handleInputChange}
-                              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
+                              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all text-base"
                             />
                           </div>
                           <div>
@@ -467,9 +467,9 @@ export default function GetAQuotePage() {
                         </h3>
                         <p className="text-gray-700 mb-6">Please check all the services you'd like us to quote:</p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                           {services.map((service) => (
-                            <label key={service.key} className="flex items-start gap-3 cursor-pointer group p-4 rounded-lg bg-white/30 hover:bg-white/50 transition-all">
+                            <label key={service.key} className="flex items-start gap-3 cursor-pointer group p-3 sm:p-4 rounded-lg bg-white/30 hover:bg-white/50 transition-all touch-manipulation min-h-[44px]">
                               <input
                                 type="checkbox"
                                 name={`services.${service.key}`}
@@ -520,9 +520,9 @@ export default function GetAQuotePage() {
                           Here is a checklist of items that will help us provide an accurate quote, please check which items you are providing:
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                           {documentationItems.map((item) => (
-                            <label key={item.key} className="flex items-start gap-3 cursor-pointer group p-4 rounded-lg bg-white/30 hover:bg-white/50 transition-all">
+                            <label key={item.key} className="flex items-start gap-3 cursor-pointer group p-3 sm:p-4 rounded-lg bg-white/30 hover:bg-white/50 transition-all touch-manipulation min-h-[44px]">
                               <input
                                 type="checkbox"
                                 name={`documentation.${item.key}`}
@@ -546,7 +546,7 @@ export default function GetAQuotePage() {
                             value={formData.scopeOfWork}
                             onChange={handleInputChange}
                             rows={8}
-                            className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all resize-none"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all resize-y text-base"
                             placeholder="Paste your Scope of Work here..."
                           />
                         </div>

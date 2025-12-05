@@ -24,17 +24,17 @@ export default function ContactPage() {
     <div className="min-h-screen flex flex-col">
       <Navigation />
       
-      <main className="flex-1 pt-32 pb-20">
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white via-gray-50/50 to-white">
+      <main className="flex-1 pt-24 sm:pt-32 pb-12 sm:pb-20">
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-white via-gray-50/50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <GlassCard className="p-8 md:p-12">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-[#2075bf] uppercase">
+              <GlassCard className="p-6 sm:p-8 md:p-12">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-[#2075bf] uppercase leading-tight">
                   Contact Us
                 </h1>
-                <hr className="border-t-2 border-gray-300 my-6" />
+                <hr className="border-t-2 border-gray-300 my-4 sm:my-6" />
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                       Name <span className="text-red-500">*</span>
@@ -44,7 +44,7 @@ export default function ContactPage() {
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent"
+                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent text-base"
                       required
                     />
                   </div>
@@ -85,7 +85,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={6}
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent"
+                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent text-base resize-y"
                       required
                     />
                   </div>

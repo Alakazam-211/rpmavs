@@ -10,6 +10,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
   const pathname = usePathname();
 
   const navLinks = [
@@ -20,6 +21,15 @@ export default function Navigation() {
     { href: '/careers', label: 'Careers' },
     { href: '/contact', label: 'Contact Us' },
   ];
+
+  useEffect(() => {
+    // Check if this is the first visit in this session
+    const hasVisited = sessionStorage.getItem('navbar-shown');
+    if (!hasVisited) {
+      setShouldAnimate(true);
+      sessionStorage.setItem('navbar-shown', 'true');
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,16 +48,16 @@ export default function Navigation() {
 
   return (
     <div 
-      className="fixed left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)]" 
+      className="fixed left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[calc(100%-0.5rem)] sm:w-[calc(100%-1rem)] md:w-[calc(100%-2rem)]" 
       style={{ top: scrolled ? '0.5rem' : '0.75rem' }}
     >
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: shouldAnimate ? -100 : 0 }}
         animate={{ 
           y: isHovered ? 2 : 0,
           scale: isHovered ? 1.02 : 1
         }}
-        transition={{ duration: 0.2, ease: 'easeOut' }}
+        transition={{ duration: shouldAnimate ? 0.5 : 0.2, ease: 'easeOut' }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="glass-nav w-full"
@@ -60,20 +70,35 @@ export default function Navigation() {
             : '0 8px 32px 0 rgba(32, 117, 191, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset'
         }}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2.5 sm:py-3">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3">
           <div className="flex items-center justify-between min-h-12 sm:min-h-14">
             {/* Logo */}
-            <Link href="/" className="flex items-center group min-h-[44px] min-w-[44px] flex-shrink-0 cursor-pointer">
+            <Link href="/" className="flex items-center group min-h-[44px] min-w-[44px] flex-shrink-0 cursor-pointer -ml-1 sm:ml-0">
+              {/* Mobile Logo - White Icon */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="h-7 sm:h-8 md:h-10 w-auto"
+                className="lg:hidden h-10 sm:h-12 w-auto"
+              >
+                <Image
+                  src="/rpmavs_icon_whitebg.jpg"
+                  alt="RPM Audio Visual Services Atlanta, GA"
+                  width={120}
+                  height={120}
+                  className="h-full w-auto object-contain"
+                  priority
+                />
+              </motion.div>
+              {/* Desktop Logo */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="hidden lg:block h-8 md:h-10 w-auto"
               >
                 <Image
                   src="/rpm-avs-logo-white.png"
                   alt="RPM Audio Visual Services Atlanta, GA"
                   width={200}
                   height={56}
-                  className="h-full w-auto object-contain max-w-[100px] sm:max-w-[120px] md:max-w-[140px]"
+                  className="h-full w-auto object-contain max-w-[120px] md:max-w-[140px]"
                   priority
                 />
               </motion.div>
@@ -129,7 +154,7 @@ export default function Navigation() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2.5 sm:p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 active:bg-white/40 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+              className="lg:hidden p-2.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 active:bg-white/40 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer touch-manipulation"
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
@@ -158,7 +183,7 @@ export default function Navigation() {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="lg:hidden py-3 sm:py-4 space-y-2 overflow-hidden"
+                className="lg:hidden py-3 space-y-1 overflow-hidden"
               >
                 {navLinks.map((item, index) => {
                   const active = isActive(item.href);
@@ -172,10 +197,10 @@ export default function Navigation() {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`block px-4 py-3.5 sm:py-3 rounded-full text-base font-semibold transition-all relative min-h-[44px] flex items-center cursor-pointer ${
+                        className={`block px-4 py-3 rounded-full text-base font-semibold transition-all relative min-h-[48px] flex items-center cursor-pointer touch-manipulation ${
                           active 
-                            ? 'text-white' 
-                            : 'text-white/90 active:text-white'
+                            ? 'text-white bg-white/10' 
+                            : 'text-white/90 active:text-white active:bg-white/10'
                         }`}
                       >
                         {item.label}
@@ -187,11 +212,11 @@ export default function Navigation() {
                   );
                 })}
                 
-                <div className="pt-3 sm:pt-4 border-t border-white/20">
+                <div className="pt-3 border-t border-white/20 mt-2">
                   <Link href="/get-a-quote" onClick={() => setIsOpen(false)} className="block cursor-pointer">
                     <motion.button
                       whileTap={{ scale: 0.98 }}
-                      className="w-full px-4 py-3.5 sm:py-3 rounded-full text-base font-semibold bg-white/20 backdrop-blur-md border border-white/30 text-white active:bg-white/30 transition-all shadow-lg flex items-center justify-center gap-2 group min-h-[44px] cursor-pointer"
+                      className="w-full px-4 py-3 rounded-full text-base font-semibold bg-white/20 backdrop-blur-md border border-white/30 text-white active:bg-white/30 transition-all shadow-lg flex items-center justify-center gap-2 group min-h-[48px] cursor-pointer touch-manipulation"
                     >
                       Get A Quote
                       <motion.svg

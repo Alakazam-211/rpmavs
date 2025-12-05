@@ -127,9 +127,9 @@ export default function LocationsMap({ locations, className = '' }: LocationsMap
 
   if (!isClient) {
     return (
-      <div className={`rounded-xl overflow-hidden shadow-lg bg-gray-100 ${className}`}>
-        <div className="w-full h-full min-h-[400px] flex items-center justify-center">
-          <p className="text-gray-500">Loading map...</p>
+      <div className={`rounded-lg sm:rounded-xl overflow-hidden shadow-lg bg-gray-100 ${className}`}>
+        <div className="w-full h-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center">
+          <p className="text-gray-500 text-sm sm:text-base">Loading map...</p>
         </div>
       </div>
     );
@@ -137,8 +137,8 @@ export default function LocationsMap({ locations, className = '' }: LocationsMap
 
   return (
     <>
-      <div className={`rounded-xl overflow-hidden shadow-lg ${className}`}>
-        <div ref={mapRef} className="w-full h-full min-h-[400px]" />
+      <div className={`rounded-lg sm:rounded-xl overflow-hidden shadow-lg ${className}`}>
+        <div ref={mapRef} className="w-full h-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px]" />
       </div>
       <style jsx global>{`
         .custom-marker {
@@ -168,10 +168,12 @@ export default function LocationsMap({ locations, className = '' }: LocationsMap
           background-color: white !important;
           color: #2075bf !important;
           border: 1px solid #e5e7eb !important;
-          width: 32px !important;
-          height: 32px !important;
-          line-height: 32px !important;
+          width: 36px !important;
+          height: 36px !important;
+          line-height: 36px !important;
           font-size: 18px !important;
+          min-width: 44px !important;
+          min-height: 44px !important;
         }
         .leaflet-control-zoom a:hover {
           background-color: #f3f4f6 !important;
