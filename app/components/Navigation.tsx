@@ -73,7 +73,7 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3">
           <div className="flex items-center justify-between min-h-12 sm:min-h-14">
             {/* Logo */}
-            <Link href="/" className="flex items-center group min-h-[44px] min-w-[44px] flex-shrink-0 cursor-pointer -ml-1 sm:ml-0">
+            <Link href="/" className="flex items-center group min-h-[44px] min-w-[44px] flex-shrink-0 cursor-pointer ml-1 sm:ml-2 md:ml-0">
               {/* Mobile Logo - White Icon */}
               <motion.div
                 whileHover={{ scale: 1.05 }}

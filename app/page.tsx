@@ -196,28 +196,13 @@ export default function Home() {
         {/* Hero Section */}
         <section 
           className="relative h-screen min-h-[500px] flex items-center justify-center overflow-hidden z-10"
+          style={{
+            backgroundImage: 'url(/hero-background.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
         >
-          {/* Desktop background */}
-          <div 
-            className="hidden md:block absolute inset-0"
-            style={{
-              backgroundImage: 'url(/hero-background.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
-          {/* Mobile background with PNG icon */}
-          <div 
-            className="md:hidden absolute inset-0"
-            style={{
-              backgroundImage: 'url(/rpmavs_icon.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              opacity: 0.15,
-            }}
-          />
           <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
 
