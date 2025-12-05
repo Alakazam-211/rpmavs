@@ -207,12 +207,7 @@ export default function CareersPage() {
           {/* Content Overlay */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-20 pb-20">
             <div className="max-w-4xl">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-white"
-              >
+              <div className="text-white">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-4 sm:mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider px-2" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.1em' }}>
                   Forget the "job",<br />
                   Join the Family!
@@ -280,31 +275,19 @@ export default function CareersPage() {
         <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center mb-8 sm:mb-12"
-              >
+              <div className="text-center mb-8 sm:mb-12">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2075bf] mb-3 sm:mb-4 uppercase tracking-tight leading-tight px-2">
                   Are You Fit for the Family?
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-2">
                   See what makes someone thrive at RPM – and what doesn't
                 </p>
-              </motion.div>
+              </div>
 
               {/* Side-by-Side Comparison */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12">
                 {/* Fit for Family Column */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="space-y-6"
-                >
+                <div className="space-y-6">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-green-600 mb-4 shadow-lg">
                       <span className="text-4xl text-white font-bold">✓</span>
@@ -316,13 +299,7 @@ export default function CareersPage() {
                   
                   <div className="space-y-3 sm:space-y-4">
                     {fitForFamily.map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                      >
+                      <div key={index}>
                         <GlassCard className="h-full p-4 sm:p-6 border-l-4 border-[#2075bf] hover:shadow-xl transition-shadow">
                           <div className="flex items-start gap-3 sm:gap-4">
                             <div className="text-xl sm:text-2xl text-[#2075bf] font-bold flex-shrink-0 mt-1">{item.icon}</div>
@@ -336,19 +313,13 @@ export default function CareersPage() {
                             </div>
                           </div>
                         </GlassCard>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Not a Good Fit Column */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="space-y-6"
-                >
+                <div className="space-y-6">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-red-400 to-red-600 mb-4 shadow-lg">
                       <span className="text-4xl text-white font-bold">✗</span>
@@ -360,13 +331,7 @@ export default function CareersPage() {
                   
                   <div className="space-y-3 sm:space-y-4">
                     {notGoodFit.map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                      >
+                      <div key={index}>
                         <GlassCard className="h-full p-4 sm:p-6 border-l-4 border-red-400 bg-red-50/20 hover:shadow-xl transition-shadow">
                           <div className="flex items-start gap-3 sm:gap-4">
                             <div className="text-xl sm:text-2xl text-red-600 font-bold flex-shrink-0 mt-1">{item.icon}</div>
@@ -380,20 +345,14 @@ export default function CareersPage() {
                             </div>
                           </div>
                         </GlassCard>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* CTA in Middle */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center"
-              >
+              <div className="text-center">
                 <GlassCard className="glass-card-gradient p-6 sm:p-8 md:p-12">
                   <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">
                     Think You're a Fit?
@@ -411,7 +370,7 @@ export default function CareersPage() {
                     </GlassButton>
                   </div>
                 </GlassCard>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -421,13 +380,7 @@ export default function CareersPage() {
         <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center mb-8 sm:mb-12"
-              >
+              <div className="text-center mb-8 sm:mb-12">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2075bf] mb-3 sm:mb-4 uppercase leading-tight px-2">
                   See the Vision
                 </h2>
@@ -459,13 +412,7 @@ export default function CareersPage() {
                     description: 'Discover how RPM can help launch and grow your career in the AV industry.',
                   },
                 ].map((video, index) => (
-                  <motion.div
-                    key={video.videoId}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                  >
+                  <div key={video.videoId}>
                     <GlassCard className="p-4 sm:p-6 md:p-8 overflow-hidden">
                       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                         <div className="lg:col-span-2">
@@ -489,17 +436,11 @@ export default function CareersPage() {
                         </div>
                       </div>
                     </GlassCard>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center mt-12 mb-0"
-              >
+              <div className="text-center mt-12 mb-0">
                 <GlassCard className="glass-card-gradient p-8 md:p-12 mb-0">
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                     Ready to Join Us?
@@ -508,18 +449,14 @@ export default function CareersPage() {
                     If these videos resonate with you, we'd love to hear from you!
                   </p>
                   <div className="flex justify-center">
-                    <motion.div
-                      animate={{ y: [0, 8, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                      className="text-white"
-                    >
+                    <div className="text-white">
                       <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                       </svg>
-                    </motion.div>
+                    </div>
                   </div>
                 </GlassCard>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -528,12 +465,7 @@ export default function CareersPage() {
         <section id="application-form" className="pt-12 sm:pt-16 md:pt-24 pb-12 sm:pb-20 md:pb-32 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
+              <div>
                 <div className="text-center mb-6 sm:mb-8">
                   <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-[#2075bf] uppercase tracking-tight leading-tight px-2">
                     Submit An Application
@@ -554,12 +486,7 @@ export default function CareersPage() {
                   <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                     {/* Step 1: Personal Information */}
                     {currentStep === 1 && (
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="space-y-4 sm:space-y-6"
-                      >
+                      <div className="space-y-4 sm:space-y-6">
                         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2075bf] mb-4 sm:mb-6 uppercase leading-tight">
                           Your Personal Information
                         </h3>
