@@ -16,6 +16,15 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 5,
   },
+  icons: {
+    icon: [
+      { url: '/rpmavs_icon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/rpmavs_app_icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/rpmavs_app_icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
