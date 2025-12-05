@@ -30,12 +30,12 @@ export default function LocationsMap({ locations, className = '' }: LocationsMap
 
     // Dynamically import Leaflet only on client side
     import('leaflet').then((L) => {
-      import('leaflet/dist/leaflet.css');
+      // CSS is imported via global styles
 
-      // Initialize map centered on Southeast US
+      // Initialize map centered on Southeast US (lower to show more Florida)
       mapInstance = L.default.map(mapRef.current!, {
-        center: [33.7677, -84.4183], // Center on Atlanta area
-        zoom: 5,
+        center: [26.5, -85.0], // Center even lower to show more Florida, less Canada
+        zoom: 6, // Zoomed in more
         zoomControl: true,
         attributionControl: true,
       });
@@ -86,10 +86,33 @@ export default function LocationsMap({ locations, className = '' }: LocationsMap
         markers.push(marker);
       });
 
-      // Fit map to show all markers
+      // Fit map to show all markers - use setTimeout to ensure map is fully rendered
       if (locations.length > 0 && markers.length > 0) {
-        const group = new L.default.FeatureGroup(markers);
-        mapInstance.fitBounds(group.getBounds().pad(0.2));
+        setTimeout(() => {
+          try {
+            const group = new L.default.FeatureGroup(markers);
+            const bounds = group.getBounds();
+            if (bounds.isValid()) {
+              // Extend bounds asymmetrically: MINIMAL padding north (less Canada), MORE padding south (more Florida)
+              const southWest = bounds.getSouthWest();
+              const northEast = bounds.getNorthEast();
+              
+              // Create new bounds with asymmetric padding - push viewport DOWN significantly
+              // Reduced padding overall to zoom in more
+              const paddedBounds = L.default.latLngBounds(
+                [southWest.lat - 5.0, southWest.lng - 0.6], // Reduced padding south but still showing Florida
+                [northEast.lat - 2.5, northEast.lng + 0.6]  // Reduced negative padding north but still cutting Canada
+              );
+              
+              mapInstance.fitBounds(paddedBounds, {
+                maxZoom: 7, // Allow more zoom
+                padding: [15, 15] // Reduced padding to zoom in more
+              });
+            }
+          } catch (error) {
+            console.error('Error fitting bounds:', error);
+          }
+        }, 100);
       }
     });
 

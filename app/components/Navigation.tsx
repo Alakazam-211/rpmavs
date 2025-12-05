@@ -103,7 +103,7 @@ export default function Navigation() {
               })}
               
               {/* CTA Button */}
-              <Link href="https://rpmavs.quickbase.com/nav/app/bikmcn82r/action/showpage?pageid=35" target="_blank" className="ml-2 cursor-pointer">
+              <Link href="/get-a-quote" className="ml-2 cursor-pointer">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -188,7 +188,7 @@ export default function Navigation() {
                 })}
                 
                 <div className="pt-3 sm:pt-4 border-t border-white/20">
-                  <Link href="https://rpmavs.quickbase.com/nav/app/bikmcn82r/action/showpage?pageid=35" target="_blank" onClick={() => setIsOpen(false)} className="block cursor-pointer">
+                  <Link href="/get-a-quote" onClick={() => setIsOpen(false)} className="block cursor-pointer">
                     <motion.button
                       whileTap={{ scale: 0.98 }}
                       className="w-full px-4 py-3.5 sm:py-3 rounded-full text-base font-semibold bg-white/20 backdrop-blur-md border border-white/30 text-white active:bg-white/30 transition-all shadow-lg flex items-center justify-center gap-2 group min-h-[44px] cursor-pointer"

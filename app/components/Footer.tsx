@@ -21,7 +21,7 @@ export default function Footer() {
       links: [
         { href: '/case-studies', label: 'Case Studies' },
         { href: '/contact', label: 'Contact Us' },
-        { href: 'https://rpmavs.quickbase.com/nav/app/bikmcn82r/action/showpage?pageid=35', label: 'Get A Quote', external: true },
+        { href: '/get-a-quote', label: 'Get A Quote', external: false },
       ],
     },
   ];

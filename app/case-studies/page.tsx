@@ -194,8 +194,7 @@ export default function CaseStudiesPage() {
                   Contact Us
                 </GlassButton>
                 <GlassButton 
-                  href="https://rpmavs.quickbase.com/nav/app/bikmcn82r/action/showpage?pageid=35" 
-                  target="_blank"
+                  href="/get-a-quote"
                   variant="secondary"
                   className="!bg-white/15 !backdrop-blur-md !border !border-white/25 !text-white hover:!bg-white/25 !text-lg !px-8 !py-4"
                 >
