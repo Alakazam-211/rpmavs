@@ -645,12 +645,7 @@ export default function CareersPage() {
 
                     {/* Step 2: Position & Employment */}
                     {currentStep === 2 && (
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="space-y-6"
-                      >
+                      <div className="space-y-6">
                         <h3 className="text-2xl sm:text-3xl font-bold text-[#2075bf] mb-6 uppercase">
                           Position & Previous Employment
                         </h3>
@@ -755,17 +750,12 @@ export default function CareersPage() {
                             Next: More About You
                           </GlassButton>
                         </div>
-                      </motion.div>
+                      </div>
                     )}
 
                     {/* Step 3: More About You */}
                     {currentStep === 3 && (
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="space-y-6"
-                      >
+                      <div className="space-y-6">
                         <h3 className="text-2xl sm:text-3xl font-bold text-[#2075bf] mb-6 uppercase">
                           More About You
                         </h3>
@@ -869,11 +859,11 @@ export default function CareersPage() {
                             Submit Application
                           </GlassButton>
                         </div>
-                      </motion.div>
+                      </div>
                     )}
                   </form>
                 </GlassCard>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
