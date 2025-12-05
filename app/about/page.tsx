@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import GlassCard from '../components/ui/GlassCard';
+import LocationsMap from '../components/LocationsMap';
 
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState<'history' | 'employees' | 'approach' | 'locations'>('history');
@@ -51,18 +52,79 @@ export default function AboutPage() {
     locations: {
       title: 'Our Locations',
       content: (
-        <div className="prose prose-lg max-w-none">
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
+        <div className="space-y-6">
+          <p className="text-lg text-gray-700 leading-relaxed">
             You can find us at the following locations:
           </p>
-          <ul className="list-disc list-inside space-y-2 text-lg text-gray-700">
-            <li>Birmingham, AL</li>
-            <li>Canton, GA</li>
-            <li>Charlotte, NC</li>
-            <li>Dallas, TX</li>
-            <li>Raleigh, NC</li>
-            <li>Tampa, FL</li>
-          </ul>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            {/* Map */}
+            <div className="order-2 lg:order-1">
+              <LocationsMap
+                locations={[
+                  { city: 'Birmingham', state: 'AL', lat: 33.5207, lng: -86.8025 },
+                  { city: 'Canton', state: 'GA', lat: 34.2368, lng: -84.4908 },
+                  { city: 'Charlotte', state: 'NC', lat: 35.2271, lng: -80.8431 },
+                  { city: 'Dallas', state: 'TX', lat: 32.7767, lng: -96.7970 },
+                  { city: 'Raleigh', state: 'NC', lat: 35.7796, lng: -78.6382 },
+                  { city: 'Tampa', state: 'FL', lat: 27.9506, lng: -82.4572 },
+                ]}
+                className="h-[400px] lg:h-full"
+              />
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                <a 
+                  href="https://www.google.com/maps/search/RPM+Audio+Visual+Services" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[#2075bf] hover:underline"
+                >
+                  View all locations on Google Maps →
+                </a>
+              </p>
+            </div>
+            
+            {/* Location List */}
+            <div className="order-1 lg:order-2">
+              <div className="space-y-4">
+                {[
+                  { city: 'Birmingham', state: 'AL', address: 'Birmingham, Alabama' },
+                  { city: 'Canton', state: 'GA', address: 'Canton, Georgia' },
+                  { city: 'Charlotte', state: 'NC', address: 'Charlotte, North Carolina' },
+                  { city: 'Dallas', state: 'TX', address: 'Dallas, Texas' },
+                  { city: 'Raleigh', state: 'NC', address: 'Raleigh, North Carolina' },
+                  { city: 'Tampa', state: 'FL', address: 'Tampa, Florida' },
+                ].map((location, index) => (
+                  <a
+                    key={index}
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.city + ', ' + location.state)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200 hover:bg-white/70 hover:shadow-md hover:border-[#2075bf]/50 transition-all duration-300 cursor-pointer group"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#2075bf]/10 group-hover:bg-[#2075bf]/20 flex items-center justify-center transition-colors">
+                        <svg className="w-5 h-5 text-[#2075bf]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-gray-800 mb-1 group-hover:text-[#2075bf] transition-colors">
+                          {location.city}, {location.state}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          {location.address}
+                        </p>
+                      </div>
+                      <svg className="w-5 h-5 text-gray-400 group-hover:text-[#2075bf] transition-colors flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       ),
     },

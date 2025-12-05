@@ -4,38 +4,55 @@ import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import GlassCard from '../components/ui/GlassCard';
+import {
+  PanelIcon,
+  NoIcon,
+  ShuffleIcon,
+  CommentIcon,
+  MedalIcon,
+  DashboardIcon,
+  HammerIcon,
+  BadgeIcon,
+  EyeIcon,
+  RulerPencilIcon,
+  VectorIcon,
+  StatsUpIcon,
+  UserIcon,
+  RulerIcon,
+  LinkIcon,
+} from '../components/icons';
 
 export default function ServicesPage() {
   const advantages = [
     {
       title: 'FIXED SCOPE, FIXED PRICE',
       description: "Send us your project documentation and we'll give you a fixed price at no charge.",
-      icon: '📋',
+      icon: PanelIcon,
     },
     {
       title: 'ZERO OUTSOURCING',
       description: 'Depend on our 100% employee work force for your next project.',
-      icon: '👥',
+      icon: NoIcon,
     },
     {
       title: 'Maximum Flexibility',
       description: 'When project delays are out of your control, we have a staff large enough to accommodate your changing schedule.',
-      icon: '🔄',
+      icon: ShuffleIcon,
     },
     {
       title: 'ACCOUNTABILITY',
       description: 'When you trust RPM to handle your project, our partners guarantee our work.',
-      icon: '💬',
+      icon: CommentIcon,
     },
     {
       title: 'CERTIFIED MATTERS',
       description: 'Why take a chance on un-vetted subcontractors, RPM holds top industry certifications.',
-      icon: '🏆',
+      icon: MedalIcon,
     },
     {
       title: '3 YEAR WARRANTY',
       description: "RPM stands behind our work, if you find a workmanship defect, we'll return and fix it for free.",
-      icon: '🛡️',
+      icon: DashboardIcon,
     },
   ];
 
@@ -43,32 +60,32 @@ export default function ServicesPage() {
     {
       title: 'INSTALLATION & RACK FABRICATION',
       description: "RPM blends systematic management and efficient communications to collaborate with our clients. RPM AVS's installation team is highly decorated in countless industry and manufacturer certifications. Each technician is expected to complete hours of continuing education each quarter",
-      icon: '🔧',
+      icon: HammerIcon,
     },
     {
       title: 'DSP CONFIGURATION',
       description: "RPM AVS's DSP Engineers are educated and certified on all DSP platforms. With endless hours of manufacturer and on the job training the end result will be impeccable",
-      icon: '🎛️',
+      icon: BadgeIcon,
     },
     {
       title: 'FIELD ENGINEERING',
       description: "Our dedication to our clients is the drive for our focus to detail. Our Field Engineers hold multiple industry and manufacturer certifications. Our Quality Control process is second to none. With a detailed check out procedure, our FE's will quickly diagnose and fix any issue. Our documentation process for project close out exceeds the industry standard and guarantees a high-quality product.",
-      icon: '👁️',
+      icon: EyeIcon,
     },
     {
       title: 'CONTROL SYSTEM PROGRAMMING',
       description: 'Our creative programmers are dedicated to providing a user-friendly interface for our clients that allows the end user to navigate freely through the operations of their AV system.',
-      icon: '💻',
+      icon: PanelIcon,
     },
     {
       title: 'PRE-SALES DESIGN',
       description: 'Is your sales team complaining about the lack of design bandwidth? Let our CTS-D Design Engineers add some bandwidth so you can take advantage of opportunities you might otherwise have to pass on.',
-      icon: '✏️',
+      icon: RulerPencilIcon,
     },
     {
       title: 'Smart CAD',
       description: "Our entire CAD team is supervised by Design Engineers, we won't give you multitudes of revisions that don't make sense. Each and every revision is reviewed by our Design team to ensure it's ready and complete.",
-      icon: '📐',
+      icon: VectorIcon,
     },
   ];
 
@@ -76,22 +93,22 @@ export default function ServicesPage() {
     {
       title: 'Analyze',
       description: "It's essential to understand a project – from the big picture down to the smallest detail – before getting started. To plan is to succeed.",
-      icon: '📊',
+      icon: StatsUpIcon,
     },
     {
       title: 'Assign',
       description: 'Our employees are proven specialists. From that talented pool, we build a project team with the exact skills to match the job requirements.',
-      icon: '👤',
+      icon: UserIcon,
     },
     {
       title: 'Assess',
       description: 'We never take our eye off a project, not even for a day. We evaluate progress and performance using our proprietary software management system.',
-      icon: '📏',
+      icon: RulerIcon,
     },
     {
       title: 'Accountability',
       description: 'When we take on a project we take ownership of its success – providing daily reporting, quality control test reports, and project close-out documentation.',
-      icon: '🔗',
+      icon: LinkIcon,
     },
   ];
 
@@ -119,7 +136,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.8 }}
               className="text-center text-white"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
                 RPM-AVS Services
               </h1>
             </motion.div>
@@ -147,6 +164,20 @@ export default function ServicesPage() {
         <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-12 md:mb-16"
+              >
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2075bf] uppercase mb-4 tracking-tight">
+                  Why Choose RPM-AVS?
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                  Our commitment to excellence sets us apart in the AV industry
+                </p>
+              </motion.div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {advantages.map((advantage, index) => (
                   <motion.div
@@ -158,7 +189,9 @@ export default function ServicesPage() {
                   >
                     <GlassCard className="h-full p-6 md:p-8">
                       <div className="flex items-start gap-4">
-                        <div className="text-4xl flex-shrink-0">{advantage.icon}</div>
+                        <div className="flex-shrink-0 text-[#2075bf]">
+                          <advantage.icon size={32} />
+                        </div>
                         <div className="flex-1">
                           <h3 className="text-lg sm:text-xl font-bold text-[#2075bf] uppercase mb-3">
                             {advantage.title}
@@ -180,6 +213,20 @@ export default function ServicesPage() {
         <section className="py-12 sm:py-16 md:py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-12 md:mb-16"
+              >
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2075bf] uppercase mb-4 tracking-tight">
+                  Services
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                  Comprehensive AV solutions from design to installation and beyond
+                </p>
+              </motion.div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {services.map((service, index) => (
                   <motion.div
@@ -191,7 +238,9 @@ export default function ServicesPage() {
                   >
                     <GlassCard className="h-full p-6 md:p-8">
                       <div className="flex items-start gap-4">
-                        <div className="text-4xl flex-shrink-0">{service.icon}</div>
+                        <div className="flex-shrink-0 text-[#2075bf]">
+                          <service.icon size={32} />
+                        </div>
                         <div className="flex-1">
                           <h3 className="text-lg sm:text-xl font-bold text-[#2075bf] uppercase mb-3">
                             {service.title}
@@ -240,7 +289,9 @@ export default function ServicesPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
                     <GlassCard className="h-full p-6 md:p-8 text-center bg-white/10 backdrop-blur-md border border-white/20">
-                      <div className="text-5xl mb-4">{step.icon}</div>
+                      <div className="flex justify-center mb-4 text-white">
+                        <step.icon size={48} />
+                      </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-white uppercase mb-4">
                         {step.title}
                       </h3>

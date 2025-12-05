@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import GlassCard from '../components/ui/GlassCard';
@@ -25,11 +24,7 @@ function CaseStudySection({ study, index }: { study: CaseStudy; index: number })
       }`}
     >
       {/* Case Study Number Indicator */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+      <div
         className={`absolute top-8 ${
           study.imagePosition === 'right' ? 'left-8' : 'right-8'
         } z-20 hidden lg:block`}
@@ -40,7 +35,7 @@ function CaseStudySection({ study, index }: { study: CaseStudy; index: number })
             {String(index + 1).padStart(2, '0')}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -48,51 +43,40 @@ function CaseStudySection({ study, index }: { study: CaseStudy; index: number })
             study.imagePosition === 'right' ? '' : 'lg:grid-flow-dense'
           }`}>
             {/* Image Section - Full Width Background Style */}
-            <motion.div
+            <div
               className={`relative h-[60vh] min-h-[500px] lg:h-[70vh] order-1 group cursor-pointer overflow-hidden ${
                 study.imagePosition === 'right' ? 'lg:order-1' : 'lg:order-2'
               }`}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
             >
               <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `url(${study.image})`,
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-l from-black/10 via-black/5 to-transparent" />
               </div>
               
-              {/* Overlay gradient for text readability */}
-              <div className={`absolute inset-0 transition-opacity duration-300 group-hover:opacity-75 ${
+              {/* Overlay gradient for subtle depth */}
+              <div className={`absolute inset-0 ${
                 study.imagePosition === 'right' 
-                  ? 'bg-gradient-to-r from-transparent via-black/10 to-black/30' 
-                  : 'bg-gradient-to-l from-transparent via-black/10 to-black/30'
+                  ? 'bg-gradient-to-r from-transparent via-black/5 to-black/15' 
+                  : 'bg-gradient-to-l from-transparent via-black/5 to-black/15'
               }`} />
               
               {/* Shine effect on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-            </motion.div>
+            </div>
 
             {/* Content Section */}
-            <motion.div
-              initial={{ opacity: 0, x: study.imagePosition === 'right' ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <div
               className={`relative z-10 p-8 md:p-12 lg:p-16 order-2 ${
                 study.imagePosition === 'right' ? 'lg:order-2' : 'lg:order-1'
               }`}
             >
               <div className="max-w-2xl mx-auto lg:mx-0">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
+                <div>
                   {/* Case Study Number - Mobile */}
                   <div className="lg:hidden mb-6">
                     <div className="inline-flex items-center gap-3">
@@ -113,9 +97,9 @@ function CaseStudySection({ study, index }: { study: CaseStudy; index: number })
                   <p className="text-lg sm:text-xl md:text-2xl text-gray-800 leading-relaxed font-light">
                     {study.description}
                   </p>
-                </motion.div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -169,18 +153,14 @@ export default function CaseStudiesPage() {
           </div>
           
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
+            <div>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
                 Case Studies
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl font-light max-w-4xl mx-auto drop-shadow-lg">
                 Real Projects. Real Results. Real Expertise.
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -198,12 +178,7 @@ export default function CaseStudiesPage() {
             }} />
           </div>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <div>
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-lg uppercase tracking-wider">
                 Trust RPM-AVS With Your Next Project
               </h2>
@@ -227,7 +202,7 @@ export default function CaseStudiesPage() {
                   Get A Quote
                 </GlassButton>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>

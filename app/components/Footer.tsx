@@ -12,7 +12,7 @@ export default function Footer() {
       links: [
         { href: '/', label: 'Home' },
         { href: '/about', label: 'About' },
-        { href: '/services', label: 'Our Services' },
+        { href: '/services', label: 'Services' },
         { href: '/careers', label: 'Careers' },
       ],
     },

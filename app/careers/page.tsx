@@ -213,7 +213,7 @@ export default function CareersPage() {
                 transition={{ duration: 0.8 }}
                 className="text-white"
               >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight drop-shadow-2xl uppercase tracking-wider" style={{ fontFamily: 'var(--font-oswald), sans-serif', letterSpacing: '0.15em' }}>
                   Forget the "job",<br />
                   Join the Family!
                 </h1>
