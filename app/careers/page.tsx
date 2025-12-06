@@ -197,6 +197,7 @@ export default function CareersPage() {
               src={teamMemberImages[currentSlide]}
               alt={`RPM Team Member Image – ${currentSlide + 1}`}
               className="w-full h-full object-cover"
+              loading="eager"
             />
             
             {/* Dark Overlay for Text Readability */}
@@ -229,7 +230,7 @@ export default function CareersPage() {
                     Submit An Application Now!
                   </GlassButton>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
 
@@ -387,7 +388,7 @@ export default function CareersPage() {
                 <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-2">
                   Watch these videos to learn more about RPM and see what makes our family special
                 </p>
-              </motion.div>
+              </div>
 
               <div className="space-y-6 sm:space-y-8">
                 {[
@@ -640,7 +641,7 @@ export default function CareersPage() {
                             Next: Position & Employment
                           </GlassButton>
                         </div>
-                      </motion.div>
+                      </div>
                     )}
 
                     {/* Step 2: Position & Employment */}

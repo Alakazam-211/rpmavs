@@ -266,6 +266,7 @@ export default function Home() {
                         src={brand.useLogo ? brand.logo : brand.favicon}
                         alt={`${brand.name} logo`}
                         className="w-auto h-8 sm:h-10 md:h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                        loading="eager"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = brand.logo;

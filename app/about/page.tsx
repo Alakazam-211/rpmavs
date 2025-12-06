@@ -218,6 +218,7 @@ export default function AboutPage() {
                               src={member.image}
                               alt={member.name}
                               className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white/50 shadow-lg"
+                              loading="eager"
                             />
                           </div>
                         ) : (
@@ -260,6 +261,7 @@ export default function AboutPage() {
                           src={cert.image}
                           alt={cert.name}
                           className="max-w-full max-h-12 sm:max-h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                          loading="eager"
                         />
                       </motion.div>
                     ))}

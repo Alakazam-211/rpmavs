@@ -40,6 +40,8 @@ export default function Footer() {
                   width={200}
                   height={56}
                   className="h-auto w-auto max-w-[160px] sm:max-w-[180px] md:max-w-[200px]"
+                  loading="eager"
+                  priority
                 />
               </Link>
             </div>
