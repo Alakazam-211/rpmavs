@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import GlassCard from '../components/ui/GlassCard';
@@ -179,7 +178,7 @@ export default function ServicesPage() {
                         </div>
                       </div>
                     </GlassCard>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
