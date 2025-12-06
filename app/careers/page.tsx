@@ -234,10 +234,10 @@ export default function CareersPage() {
             </div>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Mobile: bottom aligned with dots, Desktop: sides */}
           <button
             onClick={prevSlide}
-            className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-lg touch-manipulation min-h-[44px] min-w-[44px]"
+            className="absolute left-4 bottom-4 sm:bottom-6 md:bottom-auto md:left-2 md:top-1/2 md:-translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-lg touch-manipulation min-h-[44px] min-w-[44px]"
             aria-label="Previous slide"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +246,7 @@ export default function CareersPage() {
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-lg touch-manipulation min-h-[44px] min-w-[44px]"
+            className="absolute right-4 bottom-4 sm:bottom-6 md:bottom-auto md:right-2 md:top-1/2 md:-translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/30 active:bg-white/40 transition-all z-20 shadow-lg touch-manipulation min-h-[44px] min-w-[44px]"
             aria-label="Next slide"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,15 +255,15 @@ export default function CareersPage() {
           </button>
 
           {/* Slide Indicators */}
-          <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 z-20">
             {teamMemberImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`h-2 sm:h-2.5 rounded-full transition-all touch-manipulation min-w-[8px] ${
+                className={`h-1.5 sm:h-2.5 rounded-full transition-all touch-manipulation !min-h-0 ${
                   index === currentSlide
-                    ? 'w-6 sm:w-8 md:w-10 bg-white shadow-lg'
-                    : 'w-2 sm:w-2.5 bg-white/50 hover:bg-white/75 active:bg-white/75'
+                    ? 'w-4 sm:w-8 md:w-10 bg-white shadow-lg'
+                    : 'w-1.5 sm:w-2.5 bg-white/50 hover:bg-white/75 active:bg-white/75'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
