@@ -189,7 +189,7 @@ export default function CareersPage() {
       
       <main className="flex-1">
         {/* Hero Section with Full-Screen Image Slideshow */}
-        <section className="relative h-[70vh] sm:h-[80vh] min-h-[500px] sm:min-h-[600px] flex items-center overflow-hidden">
+        <section className="relative h-[90vh] sm:h-[80vh] min-h-[500px] sm:min-h-[600px] flex items-center overflow-hidden">
           {/* Full-Screen Slideshow Background */}
           <div className="absolute inset-0">
             <img

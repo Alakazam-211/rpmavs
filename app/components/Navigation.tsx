@@ -48,7 +48,7 @@ export default function Navigation() {
 
   return (
     <div 
-      className="fixed left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[calc(100%-0.5rem)] sm:w-[calc(100%-1rem)] md:w-[calc(100%-2rem)]" 
+      className="fixed left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[calc(100%-2rem)] sm:w-[calc(100%-1rem)] md:w-[calc(100%-2rem)]" 
       style={{ top: scrolled ? '0.5rem' : '0.75rem' }}
     >
       <motion.nav
@@ -70,21 +70,21 @@ export default function Navigation() {
             : '0 8px 32px 0 rgba(32, 117, 191, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset'
         }}
       >
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3">
           <div className="flex items-center justify-between min-h-12 sm:min-h-14">
             {/* Logo */}
-            <Link href="/" className="flex items-center group min-h-[44px] min-w-[44px] flex-shrink-0 cursor-pointer ml-1 sm:ml-2 md:ml-0">
-              {/* Mobile Logo - White Icon */}
+            <Link href="/" className="flex items-center group min-h-[44px] min-w-[44px] flex-shrink-0 cursor-pointer">
+              {/* Mobile Logo - Company Logo */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="lg:hidden h-10 sm:h-12 w-auto"
+                className="lg:hidden h-8 sm:h-10 w-auto"
               >
                 <Image
-                  src="/rpmavs_icon.png"
+                  src="/rpm-avs-logo-white.png"
                   alt="RPM Audio Visual Services Atlanta, GA"
-                  width={120}
-                  height={120}
-                  className="h-full w-auto object-contain brightness-0 invert"
+                  width={200}
+                  height={56}
+                  className="h-full w-auto object-contain max-w-[120px] sm:max-w-[140px]"
                   priority
                 />
               </motion.div>
@@ -183,7 +183,7 @@ export default function Navigation() {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="lg:hidden py-3 space-y-1 overflow-hidden"
+                className="lg:hidden pt-3 pb-2 space-y-1 overflow-hidden"
               >
                 {navLinks.map((item, index) => {
                   const active = isActive(item.href);
@@ -199,7 +199,7 @@ export default function Navigation() {
                         onClick={() => setIsOpen(false)}
                         className={`block px-4 py-3 rounded-full text-base font-semibold transition-all relative min-h-[48px] flex items-center cursor-pointer touch-manipulation ${
                           active 
-                            ? 'text-white bg-white/10' 
+                            ? 'text-white' 
                             : 'text-white/90 active:text-white active:bg-white/10'
                         }`}
                       >
