@@ -48,14 +48,13 @@ export default function Navigation() {
 
   return (
     <div 
-      className="fixed left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[calc(100%-2rem)] sm:w-[calc(100%-1rem)] md:w-[calc(100%-2rem)]" 
-      style={{ top: scrolled ? '0.5rem' : '0.75rem' }}
+      className={`fixed left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[calc(100%-2rem)] sm:w-[calc(100%-1rem)] md:w-[calc(100%-2rem)] top-3 ${scrolled ? 'sm:top-2' : ''}`}
     >
       <motion.nav
         initial={{ y: shouldAnimate ? -100 : 0 }}
         animate={{ 
-          y: isHovered ? 2 : 0,
-          scale: isHovered ? 1.02 : 1
+          y: (isHovered && typeof window !== 'undefined' && window.innerWidth >= 640) ? 2 : 0,
+          scale: (isHovered && typeof window !== 'undefined' && window.innerWidth >= 640) ? 1.02 : 1
         }}
         transition={{ duration: shouldAnimate ? 0.5 : 0.2, ease: 'easeOut' }}
         onMouseEnter={() => setIsHovered(true)}
