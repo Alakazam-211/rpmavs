@@ -59,6 +59,10 @@ export default function GetAQuotePage() {
     scopeOfWork: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -98,11 +102,78 @@ export default function GetAQuotePage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log('Quote form submitted:', formData);
-    alert('Quote request submitted! (This is a demo - actual submission would connect to backend)');
+    setIsSubmitting(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    try {
+      const response = await fetch('/api/quote-request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit quote request');
+      }
+
+      setSubmitSuccess(true);
+      // Reset form after successful submission
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        companyName: '',
+        opportunityName: '',
+        projectName: '',
+        clientEndUser: '',
+        jobsiteAddress: {
+          street1: '',
+          street2: '',
+          city: '',
+          zip: '',
+          state: '',
+        },
+        comments: '',
+        quoteNeededBy: '',
+        startWorkDate: '',
+        completionDate: '',
+        budget: '',
+        services: {
+          siteSurvey: false,
+          preSalesDesign: false,
+          designReview: false,
+          cad: false,
+          installation: false,
+          projectManagement: false,
+          programming: false,
+          commissioning: false,
+        },
+        documentation: {
+          bom: false,
+          sow: false,
+          sketches: false,
+          wiringDiagrams: false,
+          floorPlans: false,
+          rcps: false,
+          elevations: false,
+          misc: false,
+        },
+        scopeOfWork: '',
+      });
+      setCurrentStep(1);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitError(error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [
@@ -551,12 +622,27 @@ export default function GetAQuotePage() {
                           />
                         </div>
 
+                        {submitError && (
+                          <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
+                            <p className="font-semibold mb-1">Error submitting request</p>
+                            <p className="text-sm">{submitError}</p>
+                          </div>
+                        )}
+
+                        {submitSuccess && (
+                          <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700">
+                            <p className="font-semibold mb-1">Success!</p>
+                            <p className="text-sm">Your quote request has been submitted successfully. We'll be in touch soon!</p>
+                          </div>
+                        )}
+
                         <div className="flex justify-between gap-4 pt-4">
                           <GlassButton
                             type="button"
                             onClick={() => setCurrentStep(2)}
                             variant="secondary"
                             className="!text-base !px-6 !py-3"
+                            disabled={isSubmitting}
                           >
                             ← Back
                           </GlassButton>
@@ -564,8 +650,9 @@ export default function GetAQuotePage() {
                             type="submit"
                             variant="primary"
                             className="!text-base !px-8 !py-3"
+                            disabled={isSubmitting}
                           >
-                            Submit Quote Request
+                            {isSubmitting ? 'Submitting...' : 'Submit Quote Request'}
                           </GlassButton>
                         </div>
                       </motion.div>

@@ -19,3 +19,11 @@ export default function GlassCard({ children, className = '', onClick }: GlassCa
     </motion.div>
   );
 }
+
+
+
+
+
+
+
+
