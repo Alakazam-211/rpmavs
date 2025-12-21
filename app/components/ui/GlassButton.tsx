@@ -10,6 +10,7 @@ interface GlassButtonProps {
   className?: string;
   target?: string;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export default function GlassButton({ 
@@ -19,9 +20,12 @@ export default function GlassButton({
   variant = 'secondary',
   className = '',
   target,
-  type = 'button'
+  type = 'button',
+  disabled = false
 }: GlassButtonProps) {
-  const baseClasses = `px-6 py-3 rounded-full font-semibold transition-all duration-200 min-h-[44px] flex items-center justify-center gap-2 cursor-pointer ${
+  const baseClasses = `px-6 py-3 rounded-full font-semibold transition-all duration-200 min-h-[44px] flex items-center justify-center gap-2 ${
+    disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+  } ${
     variant === 'primary' ? 'glass-button-primary text-white' : 'glass-button text-gray-800'
   } ${className}`;
 
@@ -29,9 +33,10 @@ export default function GlassButton({
     return (
       <Link href={href} target={target} className="inline-block">
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={disabled ? {} : { scale: 1.05 }}
+          whileTap={disabled ? {} : { scale: 0.95 }}
           className={baseClasses}
+          disabled={disabled}
         >
           {children}
         </motion.button>
@@ -42,10 +47,11 @@ export default function GlassButton({
   return (
     <motion.button
       type={type}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={onClick}
+      whileHover={disabled ? {} : { scale: 1.05 }}
+      whileTap={disabled ? {} : { scale: 0.95 }}
+      onClick={disabled ? undefined : onClick}
       className={baseClasses}
+      disabled={disabled}
     >
       {children}
     </motion.button>
