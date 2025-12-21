@@ -11,57 +11,57 @@ const QUICKBASE_API_URL = 'https://api.quickbase.com/v1/records';
 
 /**
  * Field ID mapping for QuickBase table
- * TODO: Update these field IDs to match your actual QuickBase table structure
- * You can find field IDs by inspecting the table in QuickBase or using the GET /fields endpoint
+ * Field IDs retrieved from QuickBase API on 2025-12-21
+ * Table: bt2kvdg53 (Quote Requests)
  */
 const FIELD_MAPPING = {
   // Contact Information
-  firstName: 6,      // TODO: Update with actual field ID
-  lastName: 7,       // TODO: Update with actual field ID
-  email: 8,          // TODO: Update with actual field ID
-  companyName: 9,    // TODO: Update with actual field ID
+  firstName: 6,      // First Name
+  lastName: 7,        // Last Name
+  email: 8,           // Email Address
+  companyName: 25,     // Company Name
   
   // Project Information
-  opportunityName: 10,  // TODO: Update with actual field ID
-  projectName: 11,      // TODO: Update with actual field ID
-  clientEndUser: 12,    // TODO: Update with actual field ID
+  opportunityName: 26,  // Project Name (used for opportunity name)
+  projectName: 26,      // Project Name (same field as opportunity name)
+  clientEndUser: 13,   // Client
   
   // Address Information
-  jobsiteStreet1: 13,   // TODO: Update with actual field ID
-  jobsiteStreet2: 14,   // TODO: Update with actual field ID
-  jobsiteCity: 15,      // TODO: Update with actual field ID
-  jobsiteState: 16,     // TODO: Update with actual field ID
-  jobsiteZip: 17,       // TODO: Update with actual field ID
+  jobsiteStreet1: 49,  // Street 1
+  jobsiteStreet2: 50,  // Street 2
+  jobsiteCity: 51,     // City
+  jobsiteState: 52,    // State/Region
+  jobsiteZip: 53,      // Postal Code
   
   // Dates and Budget
-  quoteNeededBy: 18,    // TODO: Update with actual field ID
-  startWorkDate: 19,    // TODO: Update with actual field ID
-  completionDate: 20,   // TODO: Update with actual field ID
-  budget: 21,           // TODO: Update with actual field ID
+  quoteNeededBy: 24,   // Need by Date
+  startWorkDate: 34,   // Start Work Date:
+  completionDate: 35,   // Completion Date:
+  budget: 36,          // Budget
   
-  // Services (checkboxes - may need to be handled as multi-select or separate fields)
-  siteSurvey: 22,           // TODO: Update with actual field ID
-  preSalesDesign: 23,       // TODO: Update with actual field ID
-  designReview: 24,         // TODO: Update with actual field ID
-  cad: 25,                  // TODO: Update with actual field ID
-  installation: 26,         // TODO: Update with actual field ID
-  projectManagement: 27,    // TODO: Update with actual field ID
-  programming: 28,          // TODO: Update with actual field ID
-  commissioning: 29,        // TODO: Update with actual field ID
+  // Services (checkboxes)
+  siteSurvey: 55,           // Site Survey
+  preSalesDesign: 17,       // Pre-Sales Design
+  designReview: 16,         // Design Review
+  cad: 15,                  // CAD
+  installation: 9,          // Installation
+  projectManagement: 14,    // Project Management
+  programming: 10,          // Programming
+  commissioning: 12,        // Commissioning
   
   // Documentation (checkboxes)
-  bom: 30,                  // TODO: Update with actual field ID
-  sow: 31,                  // TODO: Update with actual field ID
-  sketches: 32,             // TODO: Update with actual field ID
-  wiringDiagrams: 33,       // TODO: Update with actual field ID
-  floorPlans: 34,           // TODO: Update with actual field ID
-  rcps: 35,                 // TODO: Update with actual field ID
-  elevations: 36,           // TODO: Update with actual field ID
-  misc: 37,                 // TODO: Update with actual field ID
+  bom: 37,                  // BOM2 (checkbox)
+  sow: 38,                  // SOW3 (checkbox)
+  sketches: 39,             // Sketches2 (checkbox)
+  wiringDiagrams: 40,       // Wiring Diagrams (SLD)
+  floorPlans: 41,          // Floor Plans2 (checkbox)
+  rcps: 42,                // RCP's (checkbox)
+  elevations: 43,          // Elevations (checkbox)
+  misc: 46,                // Misc.
   
   // Text Fields
-  comments: 38,             // TODO: Update with actual field ID
-  scopeOfWork: 39,          // TODO: Update with actual field ID
+  comments: 27,            // Comments
+  scopeOfWork: 20,         // SOW2 (rich-text field)
 };
 
 /**
