@@ -153,12 +153,12 @@ export default function Navigation() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 active:bg-white/40 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer touch-manipulation -mr-2 sm:-mr-1"
+              className="lg:hidden p-2.5 rounded-full bg-white hover:bg-white/90 active:bg-white/80 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer touch-manipulation -mr-2 sm:-mr-1 shadow-md"
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
               <motion.svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-[#2075bf]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
