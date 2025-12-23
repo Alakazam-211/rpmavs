@@ -9,7 +9,7 @@ import GlassButton from '../components/ui/GlassButton';
 
 export default function GetAQuotePage() {
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 3;
+  const totalSteps = 4; // Added step 4 for success page
 
   const [formData, setFormData] = useState({
     // Step 1: Contact & Project Information
@@ -63,6 +63,51 @@ export default function GetAQuotePage() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  // Field ID to readable name mapping for error messages
+  const getFieldName = (fieldId: number): string => {
+    const fieldMap: Record<number, string> = {
+      6: 'First Name',
+      7: 'Last Name',
+      8: 'Email Address',
+      9: 'Installation',
+      10: 'Programming',
+      11: 'Design',
+      12: 'Commissioning',
+      13: 'Client',
+      14: 'Project Management',
+      15: 'CAD',
+      16: 'Design Review',
+      17: 'Pre-Sales Design',
+      18: 'BOM',
+      19: 'SOW',
+      20: 'Scope of Work',
+      21: 'Sketches',
+      22: 'Floor Plans',
+      24: 'Need by Date',
+      25: 'Company Name',
+      26: 'Project Name',
+      27: 'Comments',
+      34: 'Start Work Date',
+      35: 'Completion Date',
+      36: 'Budget',
+      37: 'BOM',
+      38: 'SOW',
+      39: 'Sketches',
+      40: 'Wiring Diagrams',
+      41: 'Floor Plans',
+      42: "RCP's",
+      43: 'Elevations',
+      46: 'Misc.',
+      49: 'Street Address 1',
+      50: 'Street Address 2',
+      51: 'City',
+      52: 'State/Region',
+      53: 'Postal Code',
+      55: 'Site Survey',
+    };
+    return fieldMap[fieldId] || `Field ${fieldId}`;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -102,11 +147,48 @@ export default function GetAQuotePage() {
     }
   };
 
+  // Email validation function
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Scroll to top of form section
+  const scrollToFormTop = () => {
+    setTimeout(() => {
+      const formSection = document.querySelector('section.py-12');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
+  // Handle step navigation with scroll
+  const handleStepChange = (newStep: number) => {
+    setCurrentStep(newStep);
+    scrollToFormTop();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation(); // Prevent any form bubbling that might cause navigation
+    
     setIsSubmitting(true);
     setSubmitError(null);
     setSubmitSuccess(false);
+
+    // Validate email format before submission
+    if (formData.email && !isValidEmail(formData.email)) {
+      setSubmitError('Please enter a valid email address (e.g., name@example.com)');
+      setIsSubmitting(false);
+      setTimeout(() => {
+        const errorElement = document.querySelector('[data-error-message]');
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+      return;
+    }
 
     try {
       const response = await fetch('/api/quote-request', {
@@ -120,60 +202,126 @@ export default function GetAQuotePage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to submit quote request');
+        // Build detailed error message with field information
+        let errorMessage = data.error || 'Failed to submit quote request';
+        let fieldError = null;
+        
+        // Parse QuickBase field errors to identify which field failed
+        if (data.details) {
+          if (typeof data.details === 'object' && data.details.lineErrors) {
+            const lineErrors = data.details.lineErrors;
+            const errorDetails = Object.values(lineErrors).flat() as string[];
+            
+            // Try to identify which field failed from error message
+            errorDetails.forEach((err: string) => {
+              const fieldMatch = err.match(/field with ID '(\d+)'/);
+              if (fieldMatch) {
+                const fieldId = parseInt(fieldMatch[1]);
+                const fieldName = getFieldName(fieldId);
+                fieldError = `${fieldName}: ${err}`;
+              } else {
+                fieldError = err;
+              }
+            });
+            
+            if (!fieldError) {
+              errorMessage += `. ${errorDetails.join(', ')}`;
+            } else {
+              errorMessage = fieldError;
+            }
+          } else if (typeof data.details === 'string') {
+            errorMessage += `. ${data.details}`;
+          }
+        }
+        
+        // Stay on step 3, show error, keep form data intact
+        setSubmitError(errorMessage);
+        setIsSubmitting(false);
+        
+        // Scroll to error message
+        setTimeout(() => {
+          const errorElement = document.querySelector('[data-error-message]');
+          if (errorElement) {
+            errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+        
+        return; // Exit early on error, stay on step 3
       }
 
+      // Success - move to step 4 (success page)
       setSubmitSuccess(true);
-      // Reset form after successful submission
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        companyName: '',
-        opportunityName: '',
-        projectName: '',
-        clientEndUser: '',
-        jobsiteAddress: {
-          street1: '',
-          street2: '',
-          city: '',
-          zip: '',
-          state: '',
-        },
-        comments: '',
-        quoteNeededBy: '',
-        startWorkDate: '',
-        completionDate: '',
-        budget: '',
-        services: {
-          siteSurvey: false,
-          preSalesDesign: false,
-          designReview: false,
-          cad: false,
-          installation: false,
-          projectManagement: false,
-          programming: false,
-          commissioning: false,
-        },
-        documentation: {
-          bom: false,
-          sow: false,
-          sketches: false,
-          wiringDiagrams: false,
-          floorPlans: false,
-          rcps: false,
-          elevations: false,
-          misc: false,
-        },
-        scopeOfWork: '',
-      });
-      setCurrentStep(1);
+      setCurrentStep(4); // Go to success page
+      setIsSubmitting(false);
+      
+      // Store quote ID for potential future use
+      if (data.quoteId) {
+        // Could store in localStorage or state if needed for status page link
+        // For now, the status URL is in the response
+      }
     } catch (error) {
       console.error('Form submission error:', error);
+      // Stay on step 3, show error, keep form data intact
       setSubmitError(error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.');
-    } finally {
       setIsSubmitting(false);
+      
+      // Scroll to error message
+      setTimeout(() => {
+        const errorElement = document.querySelector('[data-error-message]');
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
     }
+  };
+
+  const handleSubmitAnother = () => {
+    // Reset form and go back to step 1
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      companyName: '',
+      opportunityName: '',
+      projectName: '',
+      clientEndUser: '',
+      jobsiteAddress: {
+        street1: '',
+        street2: '',
+        city: '',
+        zip: '',
+        state: '',
+      },
+      comments: '',
+      quoteNeededBy: '',
+      startWorkDate: '',
+      completionDate: '',
+      budget: '',
+      services: {
+        siteSurvey: false,
+        preSalesDesign: false,
+        designReview: false,
+        cad: false,
+        installation: false,
+        projectManagement: false,
+        programming: false,
+        commissioning: false,
+      },
+      documentation: {
+        bom: false,
+        sow: false,
+        sketches: false,
+        wiringDiagrams: false,
+        floorPlans: false,
+        rcps: false,
+        elevations: false,
+        misc: false,
+      },
+      scopeOfWork: '',
+    });
+    setCurrentStep(1);
+    setSubmitSuccess(false);
+    setSubmitError(null);
   };
 
   const services = [
@@ -245,24 +393,22 @@ export default function GetAQuotePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="text-center mb-6 sm:mb-8">
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-[#2075bf] uppercase tracking-tight leading-tight px-2">
-                    Request A Quote
-                  </h2>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4 px-2">
-                    <span className="text-base sm:text-lg text-gray-600">Step {currentStep} of {totalSteps}</span>
-                    <div className="w-full sm:w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-[#2075bf] to-[#2d8dd4] transition-all duration-500"
-                        style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-                      />
+                {currentStep !== 4 && (
+                  <div className="text-center mb-4 sm:mb-6">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-2">
+                      <span className="text-base sm:text-lg text-gray-600">Step {currentStep} of {totalSteps - 1}</span>
+                      <div className="w-full sm:w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-[#2075bf] to-[#2d8dd4] transition-all duration-500"
+                          style={{ width: `${(currentStep / (totalSteps - 1)) * 100}%` }}
+                        />
+                      </div>
                     </div>
-                    <span className="text-base sm:text-lg text-gray-600">{Math.round((currentStep / totalSteps) * 100)}%</span>
                   </div>
-                </div>
+                )}
 
                 <GlassCard className="p-4 sm:p-6 md:p-8 lg:p-12">
-                  <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+                  <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" noValidate>
                     {/* Step 1: Contact & Project Information */}
                     {currentStep === 1 && (
                       <motion.div
@@ -318,9 +464,13 @@ export default function GetAQuotePage() {
                               value={formData.email}
                               onChange={handleInputChange}
                               required
+                              pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
                               className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
                               placeholder="email@example.com"
                             />
+                            {formData.email && !isValidEmail(formData.email) && (
+                              <p className="text-xs text-red-600 mt-1">Please enter a valid email address</p>
+                            )}
                           </div>
                           <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -385,13 +535,6 @@ export default function GetAQuotePage() {
                           <label className="block text-sm font-semibold text-gray-700 mb-2">
                             Jobsite Address <span className="text-red-500">*</span>
                           </label>
-                          <div className="mb-2">
-                            <input
-                              type="text"
-                              placeholder="Search for address"
-                              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent transition-all"
-                            />
-                          </div>
                           <div className="space-y-2">
                             <input
                               type="text"
@@ -515,7 +658,7 @@ export default function GetAQuotePage() {
                         <div className="flex justify-end gap-4 pt-4">
                           <GlassButton
                             type="button"
-                            onClick={() => setCurrentStep(2)}
+                            onClick={() => handleStepChange(2)}
                             variant="primary"
                             className="!text-base !px-6 !py-3"
                           >
@@ -558,7 +701,7 @@ export default function GetAQuotePage() {
                         <div className="flex justify-between gap-4 pt-4">
                           <GlassButton
                             type="button"
-                            onClick={() => setCurrentStep(1)}
+                            onClick={() => handleStepChange(1)}
                             variant="secondary"
                             className="!text-base !px-6 !py-3"
                           >
@@ -566,7 +709,7 @@ export default function GetAQuotePage() {
                           </GlassButton>
                           <GlassButton
                             type="button"
-                            onClick={() => setCurrentStep(3)}
+                            onClick={() => handleStepChange(3)}
                             variant="primary"
                             className="!text-base !px-6 !py-3"
                           >
@@ -623,23 +766,17 @@ export default function GetAQuotePage() {
                         </div>
 
                         {submitError && (
-                          <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
+                          <div data-error-message className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
                             <p className="font-semibold mb-1">Error submitting request</p>
                             <p className="text-sm">{submitError}</p>
-                          </div>
-                        )}
-
-                        {submitSuccess && (
-                          <div className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-700">
-                            <p className="font-semibold mb-1">Success!</p>
-                            <p className="text-sm">Your quote request has been submitted successfully. We'll be in touch soon!</p>
+                            <p className="text-xs mt-2 text-red-600">Please correct the issue above and try again. Your form data has been preserved.</p>
                           </div>
                         )}
 
                         <div className="flex justify-between gap-4 pt-4">
                           <GlassButton
                             type="button"
-                            onClick={() => setCurrentStep(2)}
+                            onClick={() => handleStepChange(2)}
                             variant="secondary"
                             className="!text-base !px-6 !py-3"
                             disabled={isSubmitting}
@@ -653,6 +790,47 @@ export default function GetAQuotePage() {
                             disabled={isSubmitting}
                           >
                             {isSubmitting ? 'Submitting...' : 'Submit Quote Request'}
+                          </GlassButton>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Step 4: Success Page */}
+                    {currentStep === 4 && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="space-y-6 text-center"
+                      >
+                        <div className="mb-8">
+                          <div className="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                            <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <h3 className="text-3xl sm:text-4xl font-bold text-[#2075bf] mb-4 uppercase">
+                            Request Submitted Successfully!
+                          </h3>
+                          <p className="text-lg text-gray-700 mb-2">
+                            Thank you for your interest in RPM Audio Visual Services.
+                          </p>
+                          <p className="text-base text-gray-600 mb-4">
+                            We've received your quote request and will be in touch soon.
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            You will receive a confirmation email with the details of your submission and a link to view the status of your submission.
+                          </p>
+                        </div>
+
+                        <div className="pt-6 flex justify-center">
+                          <GlassButton
+                            type="button"
+                            onClick={handleSubmitAnother}
+                            variant="primary"
+                            className="!text-base !px-8 !py-3"
+                          >
+                            Submit Another Request
                           </GlassButton>
                         </div>
                       </motion.div>

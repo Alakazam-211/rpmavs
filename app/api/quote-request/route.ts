@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { encodeQuoteId } from '@/lib/quote-id-cipher';
 
 /**
  * QuickBase API Configuration
@@ -65,6 +66,34 @@ const FIELD_MAPPING = {
 };
 
 /**
+ * Maps US state codes to full state names for QuickBase multiple-choice field
+ * Field 52 (State/Region) requires full state names, not codes
+ */
+const STATE_CODE_TO_NAME: Record<string, string> = {
+  'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas',
+  'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware',
+  'DC': 'District of Columbia', 'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii',
+  'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa',
+  'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine',
+  'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota',
+  'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska',
+  'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico',
+  'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio',
+  'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island',
+  'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas',
+  'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington',
+  'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'
+};
+
+/**
+ * Converts state code to full state name for QuickBase
+ */
+function convertStateCodeToName(stateCode: string): string {
+  const upperCode = stateCode.toUpperCase().trim();
+  return STATE_CODE_TO_NAME[upperCode] || stateCode; // Return original if not found
+}
+
+/**
  * Formats a date string (YYYY-MM-DD) to QuickBase format (ISO 8601)
  */
 function formatDateForQuickBase(dateString: string): string | null {
@@ -128,7 +157,9 @@ function buildQuickBaseRecord(formData: any): Record<string, { value: any }> {
     record[FIELD_MAPPING.jobsiteCity] = { value: formData.jobsiteAddress.city };
   }
   if (formData.jobsiteAddress?.state) {
-    record[FIELD_MAPPING.jobsiteState] = { value: formData.jobsiteAddress.state };
+    // Convert state code to full state name for QuickBase multiple-choice field
+    const stateName = convertStateCodeToName(formData.jobsiteAddress.state);
+    record[FIELD_MAPPING.jobsiteState] = { value: stateName };
   }
   if (formData.jobsiteAddress?.zip) {
     record[FIELD_MAPPING.jobsiteZip] = { value: formData.jobsiteAddress.zip };
@@ -238,12 +269,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get QuickBase user token from environment variables
+    // Get QuickBase tokens from environment variables
     const quickbaseToken = process.env.QUICKBASE_USER_TOKEN;
+    const appToken = process.env.PROJECT_MANAGER_APP_TOKEN;
+    
     if (!quickbaseToken) {
       console.error('QUICKBASE_USER_TOKEN is not set in environment variables');
       return NextResponse.json(
-        { error: 'Server configuration error: QuickBase token not configured' },
+        { error: 'Server configuration error: QuickBase user token not configured' },
+        { status: 500 }
+      );
+    }
+    
+    if (!appToken) {
+      console.error('PROJECT_MANAGER_APP_TOKEN is not set in environment variables');
+      return NextResponse.json(
+        { error: 'Server configuration error: QuickBase app token not configured' },
         { status: 500 }
       );
     }
@@ -258,14 +299,21 @@ export async function POST(request: NextRequest) {
     };
 
     // Make request to QuickBase API
+    const requestHeaders: Record<string, string> = {
+      'QB-Realm-Hostname': QUICKBASE_REALM,
+      'Authorization': `QB-USER-TOKEN ${quickbaseToken}`,
+      'Content-Type': 'application/json',
+      'User-Agent': 'RPM-AVS-Website/1.0',
+    };
+    
+    // Add app token header if app requires it
+    if (appToken) {
+      requestHeaders['QB-App-Token'] = appToken;
+    }
+    
     const quickbaseResponse = await fetch(QUICKBASE_API_URL, {
       method: 'POST',
-      headers: {
-        'QB-Realm-Hostname': QUICKBASE_REALM,
-        'Authorization': `QB-USER-TOKEN ${quickbaseToken}`,
-        'Content-Type': 'application/json',
-        'User-Agent': 'RPM-AVS-Website/1.0',
-      },
+      headers: requestHeaders,
       body: JSON.stringify(quickbasePayload),
     });
 
@@ -305,11 +353,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const recordId = result.metadata?.createdRecordIds?.[0];
+    const encodedId = recordId ? encodeQuoteId(recordId) : null;
+
     return NextResponse.json(
       { 
         success: true, 
         message: 'Quote request submitted successfully',
-        recordId: result.metadata?.createdRecordIds?.[0],
+        recordId: recordId,
+        quoteId: encodedId, // Encoded ID for use in URLs
+        statusUrl: encodedId ? `/quote-status/${encodedId}` : null,
         metadata: result.metadata
       },
       { status: 200 }

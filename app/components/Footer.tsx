@@ -60,7 +60,7 @@ export default function Footer() {
                 <h4 className="font-semibold text-gray-900 mb-3 sm:mb-4 uppercase text-xs sm:text-sm">
                   {section.title}
                 </h4>
-                <ul className="space-y-1.5 sm:space-y-2">
+                <ul className="space-y-0.5 sm:space-y-2">
                   {section.links.map((link) => (
                     <li key={link.href}>
                       {link.external ? (
@@ -68,14 +68,14 @@ export default function Footer() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-600 hover:text-[#2075bf] transition-colors text-xs sm:text-sm cursor-pointer touch-manipulation block py-1"
+                          className="text-gray-600 hover:text-[#2075bf] transition-colors text-xs sm:text-sm cursor-pointer touch-manipulation block"
                         >
                           {link.label}
                         </a>
                       ) : (
                         <Link
                           href={link.href}
-                          className="text-gray-600 hover:text-[#2075bf] transition-colors text-xs sm:text-sm cursor-pointer touch-manipulation block py-1"
+                          className="text-gray-600 hover:text-[#2075bf] transition-colors text-xs sm:text-sm cursor-pointer touch-manipulation block"
                         >
                           {link.label}
                         </Link>
@@ -91,7 +91,7 @@ export default function Footer() {
               <h4 className="font-semibold text-gray-900 mb-3 sm:mb-4 uppercase text-xs sm:text-sm">
                 Locations
               </h4>
-              <ul className="space-y-1.5 sm:space-y-2 text-gray-600 text-xs sm:text-sm">
+              <ul className="space-y-0.5 sm:space-y-2 text-gray-600 text-xs sm:text-sm">
                 <li>Atlanta, GA</li>
                 <li>Birmingham, AL</li>
                 <li>Raleigh, NC</li>

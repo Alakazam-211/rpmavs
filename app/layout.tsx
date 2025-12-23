@@ -25,6 +25,25 @@ export const metadata: Metadata = {
       { url: '/rpmavs_app_icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
+  openGraph: {
+    title: "RPM Audio Visual Services – Certified Matters",
+    description: "The largest team of certified AV experts in the country. Zero outsourcing. 3-year warranty. Fixed-price quotes.",
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'RPM AVS - Certified Matters',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "RPM Audio Visual Services – Certified Matters",
+    description: "The largest team of certified AV experts in the country. Zero outsourcing. 3-year warranty. Fixed-price quotes.",
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({

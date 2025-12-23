@@ -156,6 +156,11 @@ button, a {
     min-height: 44px;
   }
   
+  /* Exclude footer links from min-height requirement */
+  footer a {
+    min-height: auto;
+  }
+  
   body {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;

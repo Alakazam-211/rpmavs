@@ -1,24 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import GlassCard from '../components/ui/GlassCard';
-import GlassButton from '../components/ui/GlassButton';
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+  useEffect(() => {
+    // Load Fillout embed script
+    const script = document.createElement('script');
+    script.src = 'https://server.fillout.com/embed/v1/';
+    script.async = true;
+    document.body.appendChild(script);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-  };
+    return () => {
+      // Cleanup: remove script on unmount
+      const existingScript = document.querySelector('script[src="https://server.fillout.com/embed/v1/"]');
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -28,76 +30,22 @@ export default function ContactPage() {
         <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-white via-gray-50/50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <GlassCard className="p-6 sm:p-8 md:p-12">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-[#2075bf] uppercase leading-tight">
-                  Contact Us
-                </h1>
-                <hr className="border-t-2 border-gray-300 my-4 sm:my-6" />
+              <GlassCard>
+                <div className="px-6 sm:px-8 md:px-12 pt-6 sm:pt-8 md:pt-12 pb-2 sm:pb-3">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-[#2075bf] uppercase leading-tight">
+                    Contact Us
+                  </h1>
+                  <hr className="border-t-2 border-gray-300 mb-2 sm:mb-3" />
+                </div>
                 
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent text-base"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Message <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2075bf] focus:border-transparent text-base resize-y"
-                      required
-                    />
-                  </div>
-                  
-                  <GlassButton 
-                    type="submit"
-                    variant="primary"
-                    className="w-full sm:w-auto"
-                  >
-                    Send Message
-                  </GlassButton>
-                </form>
+                <div 
+                  style={{ width: '100%', height: '500px' }}
+                  data-fillout-id="pKBZoetVMLus"
+                  data-fillout-embed-type="standard"
+                  data-fillout-inherit-parameters
+                  data-fillout-dynamic-resize
+                  data-fillout-domain="forms.discover-nocode.com"
+                />
               </GlassCard>
             </div>
           </div>
