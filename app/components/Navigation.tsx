@@ -132,7 +132,7 @@ export default function Navigation() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <button className="px-5 py-2.5 rounded-full text-sm xl:text-base font-semibold bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 hover:border-white/40 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 group cursor-pointer whitespace-nowrap">
+                  <button className="px-5 py-2.5 rounded-full text-sm xl:text-base font-semibold bg-white border border-white/30 text-[#2075bf] hover:bg-white/90 hover:border-white/40 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 group cursor-pointer whitespace-nowrap">
                     Get A Quote
                     <motion.svg
                       className="w-4 h-4"
@@ -215,7 +215,7 @@ export default function Navigation() {
                   <Link href="/get-a-quote" onClick={() => setIsOpen(false)} className="block cursor-pointer">
                     <motion.button
                       whileTap={{ scale: 0.98 }}
-                      className="w-full px-4 py-3 rounded-full text-base font-semibold bg-white/20 backdrop-blur-md border border-white/30 text-white active:bg-white/30 transition-all shadow-lg flex items-center justify-center gap-2 group min-h-[48px] cursor-pointer touch-manipulation"
+                      className="w-full px-4 py-3 rounded-full text-base font-semibold bg-white border border-white/30 text-[#2075bf] active:bg-white/90 transition-all shadow-lg flex items-center justify-center gap-2 group min-h-[48px] cursor-pointer touch-manipulation"
                     >
                       Get A Quote
                       <motion.svg
